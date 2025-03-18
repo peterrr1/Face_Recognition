@@ -1,0 +1,72 @@
+=================================================================
+Layer (type:depth-idx)                   Param #
+=================================================================
+ShuffleNetV2                             --
+├─Sequential: 1-1                        --
+│    └─Conv2d: 2-1                       (648)
+│    └─BatchNorm2d: 2-2                  (48)
+│    └─ReLU: 2-3                         --
+├─MaxPool2d: 1-2                         --
+├─Sequential: 1-3                        --
+│    └─InvertedResidual: 2-4             --
+│    │    └─Sequential: 3-1              (888)
+│    │    └─Sequential: 3-2              (1,512)
+│    └─InvertedResidual: 2-5             --
+│    │    └─Sequential: 3-3              --
+│    │    └─Sequential: 3-4              (1,512)
+│    └─InvertedResidual: 2-6             --
+│    │    └─Sequential: 3-5              --
+│    │    └─Sequential: 3-6              (1,512)
+│    └─InvertedResidual: 2-7             --
+│    │    └─Sequential: 3-7              --
+│    │    └─Sequential: 3-8              (1,512)
+├─Sequential: 1-4                        --
+│    └─InvertedResidual: 2-8             --
+│    │    └─Sequential: 3-9              (2,928)
+│    │    └─Sequential: 3-10             (5,328)
+│    └─InvertedResidual: 2-9             --
+│    │    └─Sequential: 3-11             --
+│    │    └─Sequential: 3-12             (5,328)
+│    └─InvertedResidual: 2-10            --
+│    │    └─Sequential: 3-13             --
+│    │    └─Sequential: 3-14             (5,328)
+│    └─InvertedResidual: 2-11            --
+│    │    └─Sequential: 3-15             --
+│    │    └─Sequential: 3-16             (5,328)
+│    └─InvertedResidual: 2-12            --
+│    │    └─Sequential: 3-17             --
+│    │    └─Sequential: 3-18             (5,328)
+│    └─InvertedResidual: 2-13            --
+│    │    └─Sequential: 3-19             --
+│    │    └─Sequential: 3-20             (5,328)
+│    └─InvertedResidual: 2-14            --
+│    │    └─Sequential: 3-21             --
+│    │    └─Sequential: 3-22             (5,328)
+│    └─InvertedResidual: 2-15            --
+│    │    └─Sequential: 3-23             --
+│    │    └─Sequential: 3-24             (5,328)
+├─Sequential: 1-5                        --
+│    └─InvertedResidual: 2-16            --
+│    │    └─Sequential: 3-25             (10,464)
+│    │    └─Sequential: 3-26             (19,872)
+│    └─InvertedResidual: 2-17            --
+│    │    └─Sequential: 3-27             --
+│    │    └─Sequential: 3-28             (19,872)
+│    └─InvertedResidual: 2-18            --
+│    │    └─Sequential: 3-29             --
+│    │    └─Sequential: 3-30             (19,872)
+│    └─InvertedResidual: 2-19            --
+│    │    └─Sequential: 3-31             --
+│    │    └─Sequential: 3-32             (19,872)
+├─Sequential: 1-6                        --
+│    └─Conv2d: 2-20                      (196,608)
+│    └─BatchNorm2d: 2-21                 (2,048)
+│    └─ReLU: 2-22                        --
+├─Sequential: 1-7                        --
+│    └─Dropout: 2-23                     --
+│    └─Linear: 2-24                      41,000
+=================================================================
+Total params: 382,792
+Trainable params: 41,000
+Non-trainable params: 341,792
+=================================================================

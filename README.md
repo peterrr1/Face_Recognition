@@ -1,1 +1,2 @@
-A face attribute recognition repository.
+# Face Attribute Recognition
+A face attribute recognition thesis project.
