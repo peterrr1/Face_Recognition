@@ -5,12 +5,30 @@ from azure.core.exceptions import ResourceNotFoundError
 from azure.ai.ml.dsl import pipeline
 from azure.ai.ml import load_component
 import os
+import argparse
 
-## Define the workspace and compute target
-subscription_id = '31bc5bb0-1143-4d0c-ba02-570ecc764364'
-resource_group = 'Face_Attribute_Recognition'
-workspace_name = 'test_ws'
-cluster_name = 'cpu-cluster'
+
+
+print("Parsing arguments...")
+
+## Create an argument parser
+parser = argparse.ArgumentParser('Deploy pipeline')
+
+## Add arguments
+parser.add_argument('--subscription_id', type=str, required=True, help="Azure subscription id.")
+parser.add_argument('--resource_group', type=str, required=True, help="Azure resource group.")
+parser.add_argument('--workspace_name', type=str, required=True, help="Azure workspace name.")
+parser.add_argument('--cluster_name', type=str, required=True, help="Name of the compute target.")
+
+args = parser.parse_args()
+
+## Parse the arguments
+subscription_id = args.subscription_id
+resource_group = args.resource_group
+workspace_name = args.workspace_name
+cluster_name = args.cluster_name
+
+
 
 ## Initialize the MLClient
 print('MLClient initialization...')

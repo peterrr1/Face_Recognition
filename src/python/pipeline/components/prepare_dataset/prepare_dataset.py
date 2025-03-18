@@ -36,7 +36,6 @@ def main(args):
     print("Number of files in the output data:", len(os.listdir(output)))
     print(os.listdir(output))
 
-
     ## Load the face detector and the transforms
     detector = YOLO('./static/yolov11n-face.pt')
     transform = FaceTransforms(detector=detector, pad=20)
@@ -94,7 +93,6 @@ def main(args):
     print("Number of files in the output data:", len(os.listdir(output)))
     print(os.listdir(output))
     
-
 
 if __name__ == '__main__':
     
