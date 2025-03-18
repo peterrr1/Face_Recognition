@@ -3,6 +3,11 @@ from azure.ai.ml import MLClient
 from azure.identity import DefaultAzureCredential
 import argparse
 
+"""
+Create a custom AML environment from a Conda environment file.
+"""
+
+
 ## Create an argument parser
 parser = argparse.ArgumentParser()
 
