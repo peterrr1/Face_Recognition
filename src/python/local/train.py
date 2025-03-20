@@ -175,7 +175,7 @@ def main():
     print('Setting the MLflow tracking URI and experiment...')
 
     mlflow.set_tracking_uri('http://localhost:8080')
-    mlflow.set_experiment('ShuffleNet_V2_X0_5_Face_Attribute_Recognition')
+    mlflow.set_experiment('Data loader serialization demo')
 
     
 
@@ -191,7 +191,7 @@ def main():
     ## Define the training parameters
     epochs = 10
     batch_size = 128
-    criterion = torch.nn.BCEWithLogitsLoss(pos_weight=pos_weights)
+    criterion = torch.nn.BCEWithLogitsLoss()
     optimizer = torch.optim.AdamW(model.parameters(), lr=1e-3)
     device = "cuda" if torch.cuda.is_available() else "cpu"
 
@@ -210,7 +210,7 @@ def main():
     train_set, val_set, test_set = torch.utils.data.random_split(dataset, [0.7, 0.2, 0.1], torch.Generator().manual_seed(0))
 
     ## For testing purposes create a smaller dataset
-    #train_set_demo, val_set_demo, test_set_demo = torch.utils.data.random_split(demo, [0.7, 0.2, 0.1], torch.Generator().manual_seed(0))
+    #train_set_demo, val_set_demo, test_set_demo = torch.utils.data.random_split(test_set, [0.7, 0.2, 0.1], torch.Generator().manual_seed(0))
 
 
     ## Define the data loaders
@@ -225,8 +225,7 @@ def main():
         'val': val_loader,
         'test': test_loader
     }
-
-
+    
     ## Set the run name
     mlflow_run_name = model.__class__.__name__
 

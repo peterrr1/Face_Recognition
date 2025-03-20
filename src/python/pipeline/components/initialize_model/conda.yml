@@ -1,0 +1,13 @@
+name: initialize_model
+channels:
+  - defaults
+  - conda-forge
+  - https://repo.anaconda.com/pkgs/main
+  - https://repo.anaconda.com/pkgs/r
+dependencies:
+  - pip=25.0.1
+  - python=3.12.6
+  - pip:
+      - torch==2.2.2
+      - torchvision==0.17.2
+

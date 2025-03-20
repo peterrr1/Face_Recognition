@@ -1,0 +1,37 @@
+$schema: https://azuremlschemas.azureedge.net/latest/commandComponent.schema.json
+name: train_model
+display_name: Train Model
+version: 1.0
+description: Train model
+type: command
+
+inputs:
+  model_path:
+    type: uri_folder
+  input_data:
+    type: uri_folder
+  epochs:
+    type: integer
+  batch_size:
+    type: integer
+  learning_rate:
+    type: number
+
+outputs:
+  output_data:
+    type: uri_folder
+
+code: .
+environment:
+  image: mcr.microsoft.com/azureml/openmpi3.1.2-cuda10.1-cudnn7-ubuntu18.04
+  conda_file: ./conda.yml
+
+command: >-
+  python train_model.py
+  --model_path ${{inputs.model_path}}
+  --input_data ${{inputs.input_data}}
+  --epochs ${{inputs.epochs}}
+  --batch_size ${{inputs.batch_size}}
+  --learning_rate ${{inputs.learning_rate}}
+  
+  

@@ -28,7 +28,7 @@ class CelebA(Dataset):
         num_of_pos_labels = torch.sum(self.attr, dim = 0)
         num_of_neg_labels = num_of_labels - num_of_pos_labels
         pos_weights = num_of_neg_labels / num_of_pos_labels
-        return pos_weights
+        return num_of_labels, pos_weights
 
 
     def _read_csv(

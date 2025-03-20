@@ -1,0 +1,28 @@
+$schema: https://azuremlschemas.azureedge.net/latest/commandComponent.schema.json
+name: initialize_model
+display_name: Initialize Model
+version: 1.0
+description: Initialize model for training
+type: command
+
+inputs:
+  model_name:
+    type: string
+  pretrained:
+    type: boolean
+  
+outputs:
+  model_path:
+    type: uri_folder
+
+code: .
+environment: 
+  conda_file: ./conda.yml
+  image: mcr.microsoft.com/azureml/openmpi4.1.0-ubuntu22.04:latest
+  
+command: >-
+  python initialize_model.py
+  --model_name ${{inputs.model_name}}
+  --pretrained ${{inputs.pretrained}}
+  --model_path ${{outputs.model_path}}
+  
