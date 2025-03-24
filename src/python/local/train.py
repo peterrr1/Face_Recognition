@@ -10,7 +10,10 @@ from mlflow.types import Schema, TensorSpec
 from mlflow.models.signature import ModelSignature
 from torchinfo import summary
 from torch.utils.data import DataLoader
-from time import time
+from matplotlib import pyplot as plt
+from PIL import Image
+from itertools import compress
+
 
 ## Add the path to the utils folder
 from utils.transform_utils import ShuffleNet_V2_X0_5_FaceTransforms
@@ -174,8 +177,8 @@ def main():
     ## Set the MLflow tracking URI and experiment name
     print('Setting the MLflow tracking URI and experiment...')
 
-    mlflow.set_tracking_uri('http://localhost:8080')
-    mlflow.set_experiment('Data loader serialization demo')
+    #mlflow.set_tracking_uri('http://localhost:8080')
+    #mlflow.set_experiment('Data loader serialization demo')
 
     
 
@@ -191,7 +194,7 @@ def main():
     ## Define the training parameters
     epochs = 10
     batch_size = 128
-    criterion = torch.nn.BCEWithLogitsLoss()
+    criterion = torch.nn.BCEWithLogitsLoss(pos_weight=pos_weights)
     optimizer = torch.optim.AdamW(model.parameters(), lr=1e-3)
     device = "cuda" if torch.cuda.is_available() else "cpu"
 
@@ -207,16 +210,18 @@ def main():
     ## Seed is fixed to ensure reproducibility
     print('Splitting the dataset and creating the data loaders...')
 
-    train_set, val_set, test_set = torch.utils.data.random_split(dataset, [0.7, 0.2, 0.1], torch.Generator().manual_seed(0))
-
+    train_set, val_set, test_set = torch.utils.data.random_split(dataset, [0.7, 0.299, 0.001], torch.Generator().manual_seed(0))
+    
     ## For testing purposes create a smaller dataset
-    #train_set_demo, val_set_demo, test_set_demo = torch.utils.data.random_split(test_set, [0.7, 0.2, 0.1], torch.Generator().manual_seed(0))
+    train_set_demo, val_set_demo, test_set_demo = torch.utils.data.random_split(test_set, [0.7, 0.2, 0.1], torch.Generator().manual_seed(0))
 
-
-    ## Define the data loaders
+    print(len(train_set_demo), len(val_set_demo), len(test_set_demo))
+    
+    ## Define the data loaders    
     train_loader = DataLoader(train_set, batch_size=batch_size, shuffle=True)
     val_loader = DataLoader(val_set, batch_size=batch_size)
     test_loader = DataLoader(test_set, batch_size=batch_size)
+    print("Length of the data loaders: ", len(train_loader), len(val_loader), len(test_loader))
 
 
     ## Create a dictionary of the data loaders
@@ -235,7 +240,11 @@ def main():
 
         ## Log the parameters and set the tag
         mlflow.log_params(params)
-        mlflow.set_tag('Training info', 'Using Pos_Weights for BCEWithLogitsLoss')
+
+        if criterion.pos_weight is None:
+            mlflow.set_tag('Training info', 'No Pos_Weights for BCEWithLogitsLoss')
+        else:
+            mlflow.set_tag('Training info', 'Using Pos_Weights for BCEWithLogitsLoss')
 
         
         ## Define the input and output schema and signature
@@ -263,6 +272,7 @@ def main():
         mlflow.pytorch.log_model(model, "model", signature=signature)
 
         print('Done')
+
 
 
 if __name__ == '__main__':

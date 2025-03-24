@@ -1,0 +1,31 @@
+$schema: https://azuremlschemas.azureedge.net/latest/commandComponent.schema.json
+name: test_model
+display_name: Test Model
+version: 1.0
+description: Test model
+type: command
+
+inputs:
+  model_path:
+    type: uri_folder
+  test_data:
+    type: uri_folder
+  batch_size:
+    type: integer
+
+outputs:
+  output_model:
+    type: uri_folder
+
+code: .
+environment:
+  image: mcr.microsoft.com/azureml/openmpi3.1.2-cuda10.1-cudnn7-ubuntu18.04
+  conda_file: ./conda.yml
+
+command: >-
+  python test_model.py
+  --model_path ${{inputs.model_path}}
+  --test_data ${{inputs.test_data}}
+  --batch_size ${{inputs.batch_size}}
+  --output_model ${{outputs.output_model}}
+  

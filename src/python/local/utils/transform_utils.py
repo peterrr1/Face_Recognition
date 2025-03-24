@@ -19,13 +19,13 @@ class DetectFace(nn.Module):
         return x
 
     def _forward(self, x):
-        # Detect faces on the image
+        ## Detect faces on the image
         preds = self.detector.predict(x, verbose=False)
         
-        # If no faces are detected, return the original image
+        ## If no faces are detected, return the original image
         if preds[0].boxes.conf.numel() == 0:
             return x
-        
+
         # Select the one with the highest confidence if exists
         idx = argmax(preds[0].boxes.conf)
 
@@ -33,28 +33,34 @@ class DetectFace(nn.Module):
         x1, y1, x2, y2 = preds[0].boxes.xyxy[idx].tolist()
         cropped_img = x.crop((x1 - self.pad, y1 - self.pad, x2 + self.pad, y2 + self.pad))
         return cropped_img
-    
-
 
 
 class ShuffleNet_V2_X0_5_FaceTransforms(nn.Module):
     """
     A series of transformations to apply to an image before feeding it to a ShuffleNetV2_X0_5 model.
     """
-    def __init__(self, detector = None, pad: int = 0):
+    def __init__(self, detector = None, pad: int = 0, inference: bool = False):
         super().__init__()
 
         self.detector = detector
 
-        self.transforms = v2.Compose([
-            v2.RandomHorizontalFlip(p=0.5),
-            v2.RandomRotation(degrees=15),
-            DetectFace(detector, pad),
-            v2.Resize((224, 224), interpolation=v2.InterpolationMode.BILINEAR),
-            v2.ToImage(),
-            v2.ToDtype(dtype=float32, scale=True),
-            v2.Normalize(mean=[0.485, 0.456, 0.406],  std=[0.229, 0.224, 0.225])
-        ])
+        if not inference:
+            self.transforms = v2.Compose([
+                v2.RandomHorizontalFlip(p=0.5),
+                v2.RandomRotation(degrees=15),
+                DetectFace(self.detector, pad),
+                v2.Resize((224, 224), interpolation=v2.InterpolationMode.BILINEAR),
+                v2.ToImage(),
+                v2.ToDtype(dtype=float32, scale=True),
+                v2.Normalize(mean=[0.485, 0.456, 0.406],  std=[0.229, 0.224, 0.225])
+            ])
+        else:
+            self.transforms = v2.Compose([
+                v2.Resize((224, 224), interpolation=v2.InterpolationMode.BILINEAR),
+                v2.ToImage(),
+                v2.ToDtype(dtype=float32, scale=True),
+                v2.Normalize(mean=[0.485, 0.456, 0.406],  std=[0.229, 0.224, 0.225])
+            ])
     
     def forward(self, x):
         x = self.transforms(x)
