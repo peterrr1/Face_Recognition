@@ -8,10 +8,17 @@ type: command
 inputs:
   input_data:
     type: uri_folder
-  
+  model_type:
+    type: string
+
 outputs:
-  output_data:
+  train_data:
     type: uri_folder
+  val_data:
+    type: uri_folder
+  test_data:
+    type: uri_folder
+
 
 code: .
 environment: 
@@ -21,5 +28,8 @@ environment:
 command: >-
   python prepare_data.py
   --input_data ${{inputs.input_data}}
-  --output_data ${{outputs.output_data}}
+  --model_type ${{inputs.model_type}}
+  --train_data ${{outputs.train_data}}
+  --val_data ${{outputs.val_data}}
+  --test_data ${{outputs.test_data}}
   

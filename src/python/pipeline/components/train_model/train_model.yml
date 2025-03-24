@@ -8,7 +8,9 @@ type: command
 inputs:
   model_path:
     type: uri_folder
-  input_data:
+  train_data:
+    type: uri_folder
+  val_data:
     type: uri_folder
   epochs:
     type: integer
@@ -18,20 +20,22 @@ inputs:
     type: number
 
 outputs:
-  output_data:
+  output_model:
     type: uri_folder
 
 code: .
 environment:
-  image: mcr.microsoft.com/azureml/openmpi3.1.2-cuda10.1-cudnn7-ubuntu18.04
+  image: mcr.microsoft.com/azureml/openmpi4.1.0-ubuntu22.04:latest
   conda_file: ./conda.yml
 
 command: >-
   python train_model.py
   --model_path ${{inputs.model_path}}
-  --input_data ${{inputs.input_data}}
+  --train_data ${{inputs.train_data}}
+  --val_data ${{inputs.val_data}}
   --epochs ${{inputs.epochs}}
   --batch_size ${{inputs.batch_size}}
   --learning_rate ${{inputs.learning_rate}}
+  --output_model ${{outputs.output_model}}
   
   

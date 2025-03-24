@@ -20,6 +20,7 @@ parser.add_argument('--resource_group', type=str, required=True, help="Azure res
 parser.add_argument('--workspace_name', type=str, required=True, help="Azure workspace name.")
 parser.add_argument('--cluster_name', type=str, required=True, help="Name of the compute target.")
 parser.add_argument('--pipeline_name', type=str, required=True, help="Name of the pipeline.")
+parser.add_argument('--model_type', type=str, required=True, help="Type of the model to train.", choices=['shufflenet', 'mobilenet', 'efficientnet'])
 
 args = parser.parse_args()
 
@@ -30,7 +31,7 @@ resource_group = args.resource_group
 workspace_name = args.workspace_name
 cluster_name = args.cluster_name
 pipeline_name = args.pipeline_name
-
+model_type = args.model_type
 
 
 ## Initialize the MLClient
@@ -68,38 +69,49 @@ parent_dir ='./components'
 prepare_data = load_component(source=os.path.join(parent_dir, 'prepare_data/prepare_data.yml'))
 initialize_model = load_component(source=os.path.join(parent_dir, 'initialize_model/initialize_model.yml'))
 train_model = load_component(source=os.path.join(parent_dir, 'train_model/train_model.yml'))
-
+test_model = load_component(source=os.path.join(parent_dir, 'test_model/test_model.yml'))
 
 ## Define the pipeline
-@pipeline(
-        name='face_attribute_recognition_model_training_pipeline',
-        description='Prepare the dataset for training'
-)
-def build_pipeline(raw_data):
-    step_prepare_data = prepare_data(input_data=raw_data)
-    step_initialize_model = initialize_model(model_name='shufflenet', pretrained=True)
+@pipeline(name='face_attribute_recognition_model_training_pipeline', description='Prepare the dataset for training')
+def build_pipeline(raw_data, model_type):
+    ## Top level pipeline components
+    step_prepare_data = prepare_data(input_data=raw_data, model_type=model_type)
+
+
+    ### This component can be included in the train and test model components
+    step_initialize_model = initialize_model(model_name=model_type, pretrained=True)
+
     step_train_model = train_model(
         model_path=step_initialize_model.outputs.model_path,
-        input_data=step_prepare_data.outputs.output_data,
-        epochs=10,
+        train_data=step_prepare_data.outputs.train_data,
+        val_data=step_prepare_data.outputs.val_data,
+        epochs=1,
         batch_size=32,
-        learning_rate=1e-3)
-    
+        learning_rate=0.001
+    )
+
+    step_test_model = test_model(
+        model_path=step_train_model.outputs.output_model,
+        test_data=step_prepare_data.outputs.test_data,
+        batch_size=32
+    )
+
+
     return {
-        "output_data": step_prepare_data.outputs.output_data
+        "output_model": step_test_model.outputs.output_model
         }
 
 
 
 ## Prepare the pipeline job
-def prepare_pipeline_job(display_name, cluster_name):
+def prepare_pipeline_job(display_name: str, cluster_name: str, model_type: str):
 
     ## Get the data asset and define the raw data input
     data_asset = ml_client.data.get(name='celeba', version='initial')
     raw_data = Input(type='uri_folder', path=data_asset.path)
 
 
-    pipeline_job = build_pipeline(raw_data)
+    pipeline_job = build_pipeline(raw_data, model_type)
     
     # set pipeline level datastore
     pipeline_job.settings.default_compute=cluster_name
@@ -111,5 +123,5 @@ def prepare_pipeline_job(display_name, cluster_name):
 
 
 ## Create or update the pipeline job
-prepped_job = prepare_pipeline_job(pipeline_name, cluster_name)
+prepped_job = prepare_pipeline_job(pipeline_name, cluster_name, model_type)
 ml_client.jobs.create_or_update(prepped_job)
