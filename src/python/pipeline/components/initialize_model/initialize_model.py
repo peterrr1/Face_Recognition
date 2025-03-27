@@ -58,6 +58,12 @@ def init_shufflenet(pretrained = True):
     from torchvision.models import shufflenet_v2_x0_5, ShuffleNet_V2_X0_5_Weights
     weights = ShuffleNet_V2_X0_5_Weights.IMAGENET1K_V1 if pretrained else None
     model = shufflenet_v2_x0_5(weights = weights)
+
+    model.fc = torch.nn.Sequential(
+        torch.nn.Dropout(0.2),
+        torch.nn.Linear(1024, 40)
+    )
+
     return model
 
 
@@ -69,6 +75,7 @@ def init_mobilenet(pretrained = True):
     from torchvision.models import mobilenet_v2, MobileNet_V2_Weights
     weights = MobileNet_V2_Weights.IMAGENET1K_V2 if pretrained else None
     model = mobilenet_v2(weights = weights)
+
     return model
 
 

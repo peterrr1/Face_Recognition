@@ -1,5 +1,5 @@
 import mlflow.models
-from torchvision.models import shufflenet_v2_x0_5, ShuffleNet_V2_X0_5_Weights, mobilenet_v2, efficientnet_b0
+from torchvision.models import shufflenet_v2_x0_5, ShuffleNet_V2_X0_5_Weights, mobilenet_v2, MobileNet_V2_Weights
 from torch import nn
 from ultralytics import YOLO
 import torch
@@ -158,18 +158,19 @@ def main():
     print('Loading the model and the detector...')
 
     detector = YOLO("./static/yolov11n-face.pt")
-    model = shufflenet_v2_x0_5(weights=ShuffleNet_V2_X0_5_Weights.IMAGENET1K_V1)
+    model = mobilenet_v2(weights=MobileNet_V2_Weights.IMAGENET1K_V2)
 
     ## Define the new classifier
     classifier = nn.Sequential(
         nn.Dropout(p=0.2),
-        nn.Linear(in_features=1024, out_features=40) ## in_features = 1000 is a dummy, change_classifier method will handle this accordingly to the model
+        nn.Linear(in_features=1280, out_features=40) ## in_features = 1000 is a dummy, change_classifier method will handle this accordingly to the model
     )
-    model.fc = classifier
+    model.classifier = classifier
+
 
     ## Change the classifier
     #model = change_classifier(model, classifier)
-
+    
     ## Freeze the model
     model = freeze_model(model)
 
@@ -177,8 +178,8 @@ def main():
     ## Set the MLflow tracking URI and experiment name
     print('Setting the MLflow tracking URI and experiment...')
 
-    #mlflow.set_tracking_uri('http://localhost:8080')
-    #mlflow.set_experiment('Data loader serialization demo')
+    mlflow.set_tracking_uri('http://localhost:8080')
+    mlflow.set_experiment('Face_Attribute_Recognition')
 
     
 
@@ -210,12 +211,14 @@ def main():
     ## Seed is fixed to ensure reproducibility
     print('Splitting the dataset and creating the data loaders...')
 
-    train_set, val_set, test_set = torch.utils.data.random_split(dataset, [0.7, 0.299, 0.001], torch.Generator().manual_seed(0))
-    
-    ## For testing purposes create a smaller dataset
-    train_set_demo, val_set_demo, test_set_demo = torch.utils.data.random_split(test_set, [0.7, 0.2, 0.1], torch.Generator().manual_seed(0))
+    train_set, val_set, test_set = torch.utils.data.random_split(dataset, [0.7, 0.2, 0.1], torch.Generator().manual_seed(0))
 
-    print(len(train_set_demo), len(val_set_demo), len(test_set_demo))
+
+
+    ## For testing purposes create a smaller dataset
+    #train_set_demo, val_set_demo, test_set_demo = torch.utils.data.random_split(test_set, [0.7, 0.2, 0.1], torch.Generator().manual_seed(0))
+
+    #print(len(train_set_demo), len(val_set_demo), len(test_set_demo))
     
     ## Define the data loaders    
     train_loader = DataLoader(train_set, batch_size=batch_size, shuffle=True)

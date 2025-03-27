@@ -1,11 +1,12 @@
 from azure.identity import DefaultAzureCredential
 from azure.ai.ml import MLClient, Input
-from azure.ai.ml.entities import AmlCompute
+from azure.ai.ml.entities import AmlCompute, Workspace
 from azure.core.exceptions import ResourceNotFoundError
 from azure.ai.ml.dsl import pipeline
 from azure.ai.ml import load_component
 import os
 import argparse
+import mlflow
 
 
 
@@ -37,7 +38,7 @@ model_type = args.model_type
 ## Initialize the MLClient
 print('MLClient initialization...')
 ml_client = MLClient(DefaultAzureCredential(), subscription_id, resource_group, workspace_name)
-ws = ml_client._workspaces.get(name = workspace_name)
+ws = ml_client.workspaces.get(workspace_name)
 
 
 ## Check if the compute target exists, if not create a new one
@@ -50,7 +51,7 @@ except ResourceNotFoundError:
     
     cpu_cluster = AmlCompute(
         name = cluster_name,
-        size = 'STANDARD_D2_V3',
+        size = 'STANDARD_D4_V3',
         min_instances = 0,
         max_instances = 1,
         idle_time_before_scale_down = 180,
@@ -75,7 +76,7 @@ test_model = load_component(source=os.path.join(parent_dir, 'test_model/test_mod
 @pipeline(name='face_attribute_recognition_model_training_pipeline', description='Prepare the dataset for training')
 def build_pipeline(raw_data, model_type):
     ## Top level pipeline components
-    step_prepare_data = prepare_data(input_data=raw_data, model_type=model_type)
+    step_prepare_data = prepare_data(input_data=raw_data)
 
 
     ### This component can be included in the train and test model components
@@ -86,14 +87,14 @@ def build_pipeline(raw_data, model_type):
         train_data=step_prepare_data.outputs.train_data,
         val_data=step_prepare_data.outputs.val_data,
         epochs=1,
-        batch_size=32,
+        batch_size=64,
         learning_rate=0.001
     )
 
     step_test_model = test_model(
         model_path=step_train_model.outputs.output_model,
         test_data=step_prepare_data.outputs.test_data,
-        batch_size=32
+        batch_size=64
     )
 
 
@@ -123,5 +124,8 @@ def prepare_pipeline_job(display_name: str, cluster_name: str, model_type: str):
 
 
 ## Create or update the pipeline job
+mlflow.set_tracking_uri(ws.mlflow_tracking_uri)
+mlflow.set_experiment('Face_Attribute_Recognition')
+
 prepped_job = prepare_pipeline_job(pipeline_name, cluster_name, model_type)
 ml_client.jobs.create_or_update(prepped_job)

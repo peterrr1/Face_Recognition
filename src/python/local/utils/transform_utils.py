@@ -65,6 +65,39 @@ class ShuffleNet_V2_X0_5_FaceTransforms(nn.Module):
     def forward(self, x):
         x = self.transforms(x)
         return x
+    
+
+
+class MobileNet_V2_FaceTransforms(nn.Module):
+    """
+    A series of transformations to apply to an image before feeding it to a ShuffleNetV2_X0_5 model.
+    """
+    def __init__(self, detector = None, pad: int = 0, inference: bool = False):
+        super().__init__()
+
+        self.detector = detector
+
+        if not inference:
+            self.transforms = v2.Compose([
+                v2.RandomHorizontalFlip(p=0.5),
+                v2.RandomRotation(degrees=15),
+                DetectFace(self.detector, pad),
+                v2.Resize((224, 224), interpolation=v2.InterpolationMode.BILINEAR),
+                v2.ToImage(),
+                v2.ToDtype(dtype=float32, scale=True),
+                v2.Normalize(mean=[0.485, 0.456, 0.406],  std=[0.229, 0.224, 0.225])
+            ])
+        else:
+            self.transforms = v2.Compose([
+                v2.Resize((224, 224), interpolation=v2.InterpolationMode.BILINEAR),
+                v2.ToImage(),
+                v2.ToDtype(dtype=float32, scale=True),
+                v2.Normalize(mean=[0.485, 0.456, 0.406],  std=[0.229, 0.224, 0.225])
+            ])
+    
+    def forward(self, x):
+        x = self.transforms(x)
+        return x
 
 
 

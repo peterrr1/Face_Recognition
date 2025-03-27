@@ -4,3 +4,4 @@ mlruns/
 notebooks/
 .DS_Store
 azureml_config.txt
+src/python/pipeline/static/
