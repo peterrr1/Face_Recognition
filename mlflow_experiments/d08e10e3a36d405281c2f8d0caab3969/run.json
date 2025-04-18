@@ -1,0 +1,3969 @@
+{
+  "system": {
+    "package_version": "1.2.0",
+    "script": "export_run.py",
+    "export_file_version": "2",
+    "export_time": 1744638846,
+    "_export_time": "2025-04-14 13:54:06",
+    "mlflow_version": "2.20.1",
+    "mlflow_tracking_uri": "http://localhost:8080",
+    "platform": {
+      "python_version": "3.12.6",
+      "system": "Darwin",
+      "processor": "arm"
+    },
+    "user": "peterbrezovcsik"
+  },
+  "mlflow": {
+    "info": {
+      "run_uuid": "d08e10e3a36d405281c2f8d0caab3969",
+      "run_id": "d08e10e3a36d405281c2f8d0caab3969",
+      "experiment_id": "208844861682074549",
+      "user_id": "peterbrezovcsik",
+      "status": "FINISHED",
+      "start_time": 1744284251407,
+      "end_time": 1744315523692,
+      "lifecycle_stage": "active",
+      "artifact_uri": "mlflow-artifacts:/208844861682074549/d08e10e3a36d405281c2f8d0caab3969/artifacts",
+      "run_name": "EfficientNetB0",
+      "_start_time": "2025-04-10 11:24:11",
+      "_end_time": "2025-04-10 20:05:24"
+    },
+    "params": {
+      "optimizer": "AdamW",
+      "loss": "BCEWithLogitsLoss",
+      "learning_rate": "0.001",
+      "pad": "20",
+      "epochs": "25",
+      "batch_size": "64"
+    },
+    "metrics": {
+      "Recall_Weighted_VAL": [
+        {
+          "value": 0.776748,
+          "timestamp": 1744285498427,
+          "step": 0
+        },
+        {
+          "value": 0.787161,
+          "timestamp": 1744286724141,
+          "step": 1
+        },
+        {
+          "value": 0.796967,
+          "timestamp": 1744287954559,
+          "step": 2
+        },
+        {
+          "value": 0.795403,
+          "timestamp": 1744289178619,
+          "step": 3
+        },
+        {
+          "value": 0.801101,
+          "timestamp": 1744290412896,
+          "step": 4
+        },
+        {
+          "value": 0.79895,
+          "timestamp": 1744291652603,
+          "step": 5
+        },
+        {
+          "value": 0.795077,
+          "timestamp": 1744292891059,
+          "step": 6
+        },
+        {
+          "value": 0.797246,
+          "timestamp": 1744294127987,
+          "step": 7
+        },
+        {
+          "value": 0.795264,
+          "timestamp": 1744295358469,
+          "step": 8
+        },
+        {
+          "value": 0.794053,
+          "timestamp": 1744296588446,
+          "step": 9
+        },
+        {
+          "value": 0.795507,
+          "timestamp": 1744297824724,
+          "step": 10
+        },
+        {
+          "value": 0.792834,
+          "timestamp": 1744299063656,
+          "step": 11
+        },
+        {
+          "value": 0.800267,
+          "timestamp": 1744300288191,
+          "step": 12
+        },
+        {
+          "value": 0.801769,
+          "timestamp": 1744301514032,
+          "step": 13
+        },
+        {
+          "value": 0.804588,
+          "timestamp": 1744302741308,
+          "step": 14
+        },
+        {
+          "value": 0.796912,
+          "timestamp": 1744303976136,
+          "step": 15
+        },
+        {
+          "value": 0.804476,
+          "timestamp": 1744305205979,
+          "step": 16
+        },
+        {
+          "value": 0.796541,
+          "timestamp": 1744306438395,
+          "step": 17
+        },
+        {
+          "value": 0.799177,
+          "timestamp": 1744307676322,
+          "step": 18
+        },
+        {
+          "value": 0.802063,
+          "timestamp": 1744308942033,
+          "step": 19
+        },
+        {
+          "value": 0.796619,
+          "timestamp": 1744310235022,
+          "step": 20
+        },
+        {
+          "value": 0.801836,
+          "timestamp": 1744311536622,
+          "step": 21
+        },
+        {
+          "value": 0.798612,
+          "timestamp": 1744312830744,
+          "step": 22
+        },
+        {
+          "value": 0.804069,
+          "timestamp": 1744314109175,
+          "step": 23
+        },
+        {
+          "value": 0.796813,
+          "timestamp": 1744315387345,
+          "step": 24
+        }
+      ],
+      "Recall_Macro_TEST": [
+        {
+          "value": 0.797559,
+          "timestamp": 1744315517918,
+          "step": 0
+        }
+      ],
+      "Subset_Accuracy_TRAIN": [
+        {
+          "value": 0.766295,
+          "timestamp": 1744285368901,
+          "step": 0
+        },
+        {
+          "value": 0.777447,
+          "timestamp": 1744286597975,
+          "step": 1
+        },
+        {
+          "value": 0.779951,
+          "timestamp": 1744287825047,
+          "step": 2
+        },
+        {
+          "value": 0.782602,
+          "timestamp": 1744289052182,
+          "step": 3
+        },
+        {
+          "value": 0.7844,
+          "timestamp": 1744290285222,
+          "step": 4
+        },
+        {
+          "value": 0.785182,
+          "timestamp": 1744291524076,
+          "step": 5
+        },
+        {
+          "value": 0.786109,
+          "timestamp": 1744292763675,
+          "step": 6
+        },
+        {
+          "value": 0.78702,
+          "timestamp": 1744294000779,
+          "step": 7
+        },
+        {
+          "value": 0.787764,
+          "timestamp": 1744295231519,
+          "step": 8
+        },
+        {
+          "value": 0.787915,
+          "timestamp": 1744296461601,
+          "step": 9
+        },
+        {
+          "value": 0.788656,
+          "timestamp": 1744297697284,
+          "step": 10
+        },
+        {
+          "value": 0.788771,
+          "timestamp": 1744298937051,
+          "step": 11
+        },
+        {
+          "value": 0.789199,
+          "timestamp": 1744300161822,
+          "step": 12
+        },
+        {
+          "value": 0.789666,
+          "timestamp": 1744301387530,
+          "step": 13
+        },
+        {
+          "value": 0.789722,
+          "timestamp": 1744302614001,
+          "step": 14
+        },
+        {
+          "value": 0.790311,
+          "timestamp": 1744303848755,
+          "step": 15
+        },
+        {
+          "value": 0.790455,
+          "timestamp": 1744305076251,
+          "step": 16
+        },
+        {
+          "value": 0.790455,
+          "timestamp": 1744306309818,
+          "step": 17
+        },
+        {
+          "value": 0.79099,
+          "timestamp": 1744307547426,
+          "step": 18
+        },
+        {
+          "value": 0.790889,
+          "timestamp": 1744308808201,
+          "step": 19
+        },
+        {
+          "value": 0.790963,
+          "timestamp": 1744310100636,
+          "step": 20
+        },
+        {
+          "value": 0.791278,
+          "timestamp": 1744311400666,
+          "step": 21
+        },
+        {
+          "value": 0.791622,
+          "timestamp": 1744312696176,
+          "step": 22
+        },
+        {
+          "value": 0.791676,
+          "timestamp": 1744313972172,
+          "step": 23
+        },
+        {
+          "value": 0.791642,
+          "timestamp": 1744315258163,
+          "step": 24
+        }
+      ],
+      "Loss_VAL": [
+        {
+          "value": 0.657373,
+          "timestamp": 1744285498399,
+          "step": 0
+        },
+        {
+          "value": 0.644735,
+          "timestamp": 1744286724104,
+          "step": 1
+        },
+        {
+          "value": 0.638778,
+          "timestamp": 1744287954511,
+          "step": 2
+        },
+        {
+          "value": 0.638067,
+          "timestamp": 1744289178584,
+          "step": 3
+        },
+        {
+          "value": 0.631805,
+          "timestamp": 1744290412861,
+          "step": 4
+        },
+        {
+          "value": 0.634118,
+          "timestamp": 1744291652561,
+          "step": 5
+        },
+        {
+          "value": 0.629216,
+          "timestamp": 1744292891016,
+          "step": 6
+        },
+        {
+          "value": 0.630075,
+          "timestamp": 1744294127954,
+          "step": 7
+        },
+        {
+          "value": 0.627857,
+          "timestamp": 1744295358434,
+          "step": 8
+        },
+        {
+          "value": 0.626635,
+          "timestamp": 1744296588407,
+          "step": 9
+        },
+        {
+          "value": 0.626931,
+          "timestamp": 1744297824690,
+          "step": 10
+        },
+        {
+          "value": 0.625992,
+          "timestamp": 1744299063619,
+          "step": 11
+        },
+        {
+          "value": 0.624808,
+          "timestamp": 1744300288160,
+          "step": 12
+        },
+        {
+          "value": 0.624769,
+          "timestamp": 1744301514000,
+          "step": 13
+        },
+        {
+          "value": 0.622535,
+          "timestamp": 1744302741273,
+          "step": 14
+        },
+        {
+          "value": 0.622228,
+          "timestamp": 1744303976107,
+          "step": 15
+        },
+        {
+          "value": 0.623388,
+          "timestamp": 1744305205946,
+          "step": 16
+        },
+        {
+          "value": 0.624237,
+          "timestamp": 1744306438353,
+          "step": 17
+        },
+        {
+          "value": 0.622614,
+          "timestamp": 1744307676284,
+          "step": 18
+        },
+        {
+          "value": 0.625171,
+          "timestamp": 1744308942005,
+          "step": 19
+        },
+        {
+          "value": 0.624623,
+          "timestamp": 1744310234996,
+          "step": 20
+        },
+        {
+          "value": 0.623287,
+          "timestamp": 1744311536583,
+          "step": 21
+        },
+        {
+          "value": 0.622408,
+          "timestamp": 1744312830715,
+          "step": 22
+        },
+        {
+          "value": 0.620932,
+          "timestamp": 1744314109134,
+          "step": 23
+        },
+        {
+          "value": 0.623203,
+          "timestamp": 1744315387305,
+          "step": 24
+        }
+      ],
+      "F1_Score_Micro_TRAIN": [
+        {
+          "value": 0.607528,
+          "timestamp": 1744285368917,
+          "step": 0
+        },
+        {
+          "value": 0.623379,
+          "timestamp": 1744286597977,
+          "step": 1
+        },
+        {
+          "value": 0.627395,
+          "timestamp": 1744287825056,
+          "step": 2
+        },
+        {
+          "value": 0.63117,
+          "timestamp": 1744289052184,
+          "step": 3
+        },
+        {
+          "value": 0.634001,
+          "timestamp": 1744290285224,
+          "step": 4
+        },
+        {
+          "value": 0.635504,
+          "timestamp": 1744291524079,
+          "step": 5
+        },
+        {
+          "value": 0.636872,
+          "timestamp": 1744292763678,
+          "step": 6
+        },
+        {
+          "value": 0.638349,
+          "timestamp": 1744294000782,
+          "step": 7
+        },
+        {
+          "value": 0.63951,
+          "timestamp": 1744295231522,
+          "step": 8
+        },
+        {
+          "value": 0.639807,
+          "timestamp": 1744296461603,
+          "step": 9
+        },
+        {
+          "value": 0.640632,
+          "timestamp": 1744297697286,
+          "step": 10
+        },
+        {
+          "value": 0.641493,
+          "timestamp": 1744298937053,
+          "step": 11
+        },
+        {
+          "value": 0.641816,
+          "timestamp": 1744300161824,
+          "step": 12
+        },
+        {
+          "value": 0.642701,
+          "timestamp": 1744301387532,
+          "step": 13
+        },
+        {
+          "value": 0.642534,
+          "timestamp": 1744302614004,
+          "step": 14
+        },
+        {
+          "value": 0.643514,
+          "timestamp": 1744303848757,
+          "step": 15
+        },
+        {
+          "value": 0.643899,
+          "timestamp": 1744305076254,
+          "step": 16
+        },
+        {
+          "value": 0.644099,
+          "timestamp": 1744306309821,
+          "step": 17
+        },
+        {
+          "value": 0.644839,
+          "timestamp": 1744307547429,
+          "step": 18
+        },
+        {
+          "value": 0.644582,
+          "timestamp": 1744308808204,
+          "step": 19
+        },
+        {
+          "value": 0.644804,
+          "timestamp": 1744310100638,
+          "step": 20
+        },
+        {
+          "value": 0.645193,
+          "timestamp": 1744311400670,
+          "step": 21
+        },
+        {
+          "value": 0.645476,
+          "timestamp": 1744312696181,
+          "step": 22
+        },
+        {
+          "value": 0.645876,
+          "timestamp": 1744313972174,
+          "step": 23
+        },
+        {
+          "value": 0.645986,
+          "timestamp": 1744315258166,
+          "step": 24
+        }
+      ],
+      "F1_Score_Micro_TEST": [
+        {
+          "value": 0.63493,
+          "timestamp": 1744315517906,
+          "step": 0
+        }
+      ],
+      "Recall_Sample_TRAIN": [
+        {
+          "value": 0.752552,
+          "timestamp": 1744285368935,
+          "step": 0
+        },
+        {
+          "value": 0.766437,
+          "timestamp": 1744286597991,
+          "step": 1
+        },
+        {
+          "value": 0.77047,
+          "timestamp": 1744287825072,
+          "step": 2
+        },
+        {
+          "value": 0.773916,
+          "timestamp": 1744289052202,
+          "step": 3
+        },
+        {
+          "value": 0.776076,
+          "timestamp": 1744290285256,
+          "step": 4
+        },
+        {
+          "value": 0.776942,
+          "timestamp": 1744291524094,
+          "step": 5
+        },
+        {
+          "value": 0.778082,
+          "timestamp": 1744292763692,
+          "step": 6
+        },
+        {
+          "value": 0.779253,
+          "timestamp": 1744294000799,
+          "step": 7
+        },
+        {
+          "value": 0.780347,
+          "timestamp": 1744295231535,
+          "step": 8
+        },
+        {
+          "value": 0.780774,
+          "timestamp": 1744296461617,
+          "step": 9
+        },
+        {
+          "value": 0.781332,
+          "timestamp": 1744297697305,
+          "step": 10
+        },
+        {
+          "value": 0.781648,
+          "timestamp": 1744298937071,
+          "step": 11
+        },
+        {
+          "value": 0.78248,
+          "timestamp": 1744300161838,
+          "step": 12
+        },
+        {
+          "value": 0.782505,
+          "timestamp": 1744301387550,
+          "step": 13
+        },
+        {
+          "value": 0.782702,
+          "timestamp": 1744302614019,
+          "step": 14
+        },
+        {
+          "value": 0.783682,
+          "timestamp": 1744303848772,
+          "step": 15
+        },
+        {
+          "value": 0.783563,
+          "timestamp": 1744305076269,
+          "step": 16
+        },
+        {
+          "value": 0.783797,
+          "timestamp": 1744306309834,
+          "step": 17
+        },
+        {
+          "value": 0.784563,
+          "timestamp": 1744307547444,
+          "step": 18
+        },
+        {
+          "value": 0.783754,
+          "timestamp": 1744308808218,
+          "step": 19
+        },
+        {
+          "value": 0.784601,
+          "timestamp": 1744310100651,
+          "step": 20
+        },
+        {
+          "value": 0.784532,
+          "timestamp": 1744311400687,
+          "step": 21
+        },
+        {
+          "value": 0.784795,
+          "timestamp": 1744312696199,
+          "step": 22
+        },
+        {
+          "value": 0.785662,
+          "timestamp": 1744313972189,
+          "step": 23
+        },
+        {
+          "value": 0.78536,
+          "timestamp": 1744315258180,
+          "step": 24
+        }
+      ],
+      "Precision_Micro_TEST": [
+        {
+          "value": 0.535808,
+          "timestamp": 1744315517925,
+          "step": 0
+        }
+      ],
+      "Recall_Micro_TEST": [
+        {
+          "value": 0.779973,
+          "timestamp": 1744315517915,
+          "step": 0
+        }
+      ],
+      "F1_Score_Macro_TEST": [
+        {
+          "value": 0.63493,
+          "timestamp": 1744315517908,
+          "step": 0
+        }
+      ],
+      "Subset_Accuracy_VAL": [
+        {
+          "value": 0.770647,
+          "timestamp": 1744285498409,
+          "step": 0
+        },
+        {
+          "value": 0.776899,
+          "timestamp": 1744286724120,
+          "step": 1
+        },
+        {
+          "value": 0.780169,
+          "timestamp": 1744287954530,
+          "step": 2
+        },
+        {
+          "value": 0.779516,
+          "timestamp": 1744289178597,
+          "step": 3
+        },
+        {
+          "value": 0.784366,
+          "timestamp": 1744290412870,
+          "step": 4
+        },
+        {
+          "value": 0.784648,
+          "timestamp": 1744291652579,
+          "step": 5
+        },
+        {
+          "value": 0.783275,
+          "timestamp": 1744292891026,
+          "step": 6
+        },
+        {
+          "value": 0.785948,
+          "timestamp": 1744294127966,
+          "step": 7
+        },
+        {
+          "value": 0.785213,
+          "timestamp": 1744295358447,
+          "step": 8
+        },
+        {
+          "value": 0.785214,
+          "timestamp": 1744296588421,
+          "step": 9
+        },
+        {
+          "value": 0.785696,
+          "timestamp": 1744297824702,
+          "step": 10
+        },
+        {
+          "value": 0.787324,
+          "timestamp": 1744299063634,
+          "step": 11
+        },
+        {
+          "value": 0.789624,
+          "timestamp": 1744300288169,
+          "step": 12
+        },
+        {
+          "value": 0.787389,
+          "timestamp": 1744301514012,
+          "step": 13
+        },
+        {
+          "value": 0.788726,
+          "timestamp": 1744302741282,
+          "step": 14
+        },
+        {
+          "value": 0.790735,
+          "timestamp": 1744303976116,
+          "step": 15
+        },
+        {
+          "value": 0.787743,
+          "timestamp": 1744305205956,
+          "step": 16
+        },
+        {
+          "value": 0.787379,
+          "timestamp": 1744306438370,
+          "step": 17
+        },
+        {
+          "value": 0.790838,
+          "timestamp": 1744307676296,
+          "step": 18
+        },
+        {
+          "value": 0.788023,
+          "timestamp": 1744308942013,
+          "step": 19
+        },
+        {
+          "value": 0.78839,
+          "timestamp": 1744310235003,
+          "step": 20
+        },
+        {
+          "value": 0.790646,
+          "timestamp": 1744311536601,
+          "step": 21
+        },
+        {
+          "value": 0.789631,
+          "timestamp": 1744312830724,
+          "step": 22
+        },
+        {
+          "value": 0.787521,
+          "timestamp": 1744314109154,
+          "step": 23
+        },
+        {
+          "value": 0.785735,
+          "timestamp": 1744315387319,
+          "step": 24
+        }
+      ],
+      "Recall_Micro_VAL": [
+        {
+          "value": 0.776748,
+          "timestamp": 1744285498421,
+          "step": 0
+        },
+        {
+          "value": 0.787161,
+          "timestamp": 1744286724134,
+          "step": 1
+        },
+        {
+          "value": 0.796967,
+          "timestamp": 1744287954552,
+          "step": 2
+        },
+        {
+          "value": 0.795403,
+          "timestamp": 1744289178612,
+          "step": 3
+        },
+        {
+          "value": 0.801101,
+          "timestamp": 1744290412888,
+          "step": 4
+        },
+        {
+          "value": 0.79895,
+          "timestamp": 1744291652596,
+          "step": 5
+        },
+        {
+          "value": 0.795077,
+          "timestamp": 1744292891051,
+          "step": 6
+        },
+        {
+          "value": 0.797246,
+          "timestamp": 1744294127981,
+          "step": 7
+        },
+        {
+          "value": 0.795264,
+          "timestamp": 1744295358462,
+          "step": 8
+        },
+        {
+          "value": 0.794053,
+          "timestamp": 1744296588438,
+          "step": 9
+        },
+        {
+          "value": 0.795507,
+          "timestamp": 1744297824716,
+          "step": 10
+        },
+        {
+          "value": 0.792834,
+          "timestamp": 1744299063648,
+          "step": 11
+        },
+        {
+          "value": 0.800267,
+          "timestamp": 1744300288183,
+          "step": 12
+        },
+        {
+          "value": 0.801769,
+          "timestamp": 1744301514026,
+          "step": 13
+        },
+        {
+          "value": 0.804588,
+          "timestamp": 1744302741301,
+          "step": 14
+        },
+        {
+          "value": 0.796912,
+          "timestamp": 1744303976129,
+          "step": 15
+        },
+        {
+          "value": 0.804476,
+          "timestamp": 1744305205971,
+          "step": 16
+        },
+        {
+          "value": 0.796541,
+          "timestamp": 1744306438388,
+          "step": 17
+        },
+        {
+          "value": 0.799177,
+          "timestamp": 1744307676313,
+          "step": 18
+        },
+        {
+          "value": 0.802063,
+          "timestamp": 1744308942026,
+          "step": 19
+        },
+        {
+          "value": 0.796619,
+          "timestamp": 1744310235016,
+          "step": 20
+        },
+        {
+          "value": 0.801836,
+          "timestamp": 1744311536615,
+          "step": 21
+        },
+        {
+          "value": 0.798612,
+          "timestamp": 1744312830737,
+          "step": 22
+        },
+        {
+          "value": 0.804069,
+          "timestamp": 1744314109168,
+          "step": 23
+        },
+        {
+          "value": 0.796813,
+          "timestamp": 1744315387337,
+          "step": 24
+        }
+      ],
+      "F1_Score_Weighted_TEST": [
+        {
+          "value": 0.693169,
+          "timestamp": 1744315517913,
+          "step": 0
+        }
+      ],
+      "Precision_Macro_TEST": [
+        {
+          "value": 0.460699,
+          "timestamp": 1744315517927,
+          "step": 0
+        }
+      ],
+      "Recall_Micro_TRAIN": [
+        {
+          "value": 0.771895,
+          "timestamp": 1744285368930,
+          "step": 0
+        },
+        {
+          "value": 0.785499,
+          "timestamp": 1744286597986,
+          "step": 1
+        },
+        {
+          "value": 0.789057,
+          "timestamp": 1744287825067,
+          "step": 2
+        },
+        {
+          "value": 0.792301,
+          "timestamp": 1744289052193,
+          "step": 3
+        },
+        {
+          "value": 0.794354,
+          "timestamp": 1744290285236,
+          "step": 4
+        },
+        {
+          "value": 0.795076,
+          "timestamp": 1744291524089,
+          "step": 5
+        },
+        {
+          "value": 0.796418,
+          "timestamp": 1744292763687,
+          "step": 6
+        },
+        {
+          "value": 0.797576,
+          "timestamp": 1744294000795,
+          "step": 7
+        },
+        {
+          "value": 0.798509,
+          "timestamp": 1744295231530,
+          "step": 8
+        },
+        {
+          "value": 0.798888,
+          "timestamp": 1744296461613,
+          "step": 9
+        },
+        {
+          "value": 0.799343,
+          "timestamp": 1744297697300,
+          "step": 10
+        },
+        {
+          "value": 0.799828,
+          "timestamp": 1744298937063,
+          "step": 11
+        },
+        {
+          "value": 0.800566,
+          "timestamp": 1744300161834,
+          "step": 12
+        },
+        {
+          "value": 0.800581,
+          "timestamp": 1744301387546,
+          "step": 13
+        },
+        {
+          "value": 0.800804,
+          "timestamp": 1744302614015,
+          "step": 14
+        },
+        {
+          "value": 0.801589,
+          "timestamp": 1744303848767,
+          "step": 15
+        },
+        {
+          "value": 0.801516,
+          "timestamp": 1744305076264,
+          "step": 16
+        },
+        {
+          "value": 0.802012,
+          "timestamp": 1744306309830,
+          "step": 17
+        },
+        {
+          "value": 0.802532,
+          "timestamp": 1744307547439,
+          "step": 18
+        },
+        {
+          "value": 0.801941,
+          "timestamp": 1744308808213,
+          "step": 19
+        },
+        {
+          "value": 0.802493,
+          "timestamp": 1744310100647,
+          "step": 20
+        },
+        {
+          "value": 0.802442,
+          "timestamp": 1744311400682,
+          "step": 21
+        },
+        {
+          "value": 0.802831,
+          "timestamp": 1744312696190,
+          "step": 22
+        },
+        {
+          "value": 0.803438,
+          "timestamp": 1744313972184,
+          "step": 23
+        },
+        {
+          "value": 0.803323,
+          "timestamp": 1744315258175,
+          "step": 24
+        }
+      ],
+      "Loss_TEST": [
+        {
+          "value": 0.615848,
+          "timestamp": 1744315517896,
+          "step": 0
+        }
+      ],
+      "Recall_Sample_VAL": [
+        {
+          "value": 0.759146,
+          "timestamp": 1744285498425,
+          "step": 0
+        },
+        {
+          "value": 0.76807,
+          "timestamp": 1744286724139,
+          "step": 1
+        },
+        {
+          "value": 0.77855,
+          "timestamp": 1744287954557,
+          "step": 2
+        },
+        {
+          "value": 0.778035,
+          "timestamp": 1744289178617,
+          "step": 3
+        },
+        {
+          "value": 0.78309,
+          "timestamp": 1744290412893,
+          "step": 4
+        },
+        {
+          "value": 0.781751,
+          "timestamp": 1744291652601,
+          "step": 5
+        },
+        {
+          "value": 0.777649,
+          "timestamp": 1744292891057,
+          "step": 6
+        },
+        {
+          "value": 0.780462,
+          "timestamp": 1744294127985,
+          "step": 7
+        },
+        {
+          "value": 0.778699,
+          "timestamp": 1744295358467,
+          "step": 8
+        },
+        {
+          "value": 0.776511,
+          "timestamp": 1744296588443,
+          "step": 9
+        },
+        {
+          "value": 0.779465,
+          "timestamp": 1744297824721,
+          "step": 10
+        },
+        {
+          "value": 0.775372,
+          "timestamp": 1744299063653,
+          "step": 11
+        },
+        {
+          "value": 0.784095,
+          "timestamp": 1744300288188,
+          "step": 12
+        },
+        {
+          "value": 0.784675,
+          "timestamp": 1744301514030,
+          "step": 13
+        },
+        {
+          "value": 0.788564,
+          "timestamp": 1744302741306,
+          "step": 14
+        },
+        {
+          "value": 0.780042,
+          "timestamp": 1744303976134,
+          "step": 15
+        },
+        {
+          "value": 0.78677,
+          "timestamp": 1744305205976,
+          "step": 16
+        },
+        {
+          "value": 0.780095,
+          "timestamp": 1744306438393,
+          "step": 17
+        },
+        {
+          "value": 0.782575,
+          "timestamp": 1744307676318,
+          "step": 18
+        },
+        {
+          "value": 0.785176,
+          "timestamp": 1744308942031,
+          "step": 19
+        },
+        {
+          "value": 0.779244,
+          "timestamp": 1744310235020,
+          "step": 20
+        },
+        {
+          "value": 0.785128,
+          "timestamp": 1744311536620,
+          "step": 21
+        },
+        {
+          "value": 0.782178,
+          "timestamp": 1744312830742,
+          "step": 22
+        },
+        {
+          "value": 0.786945,
+          "timestamp": 1744314109173,
+          "step": 23
+        },
+        {
+          "value": 0.778459,
+          "timestamp": 1744315387342,
+          "step": 24
+        }
+      ],
+      "Precision_Weighted_TRAIN": [
+        {
+          "value": 0.641465,
+          "timestamp": 1744285368946,
+          "step": 0
+        },
+        {
+          "value": 0.652907,
+          "timestamp": 1744286598003,
+          "step": 1
+        },
+        {
+          "value": 0.655471,
+          "timestamp": 1744287825083,
+          "step": 2
+        },
+        {
+          "value": 0.65786,
+          "timestamp": 1744289052217,
+          "step": 3
+        },
+        {
+          "value": 0.659639,
+          "timestamp": 1744290285268,
+          "step": 4
+        },
+        {
+          "value": 0.66063,
+          "timestamp": 1744291524108,
+          "step": 5
+        },
+        {
+          "value": 0.661623,
+          "timestamp": 1744292763702,
+          "step": 6
+        },
+        {
+          "value": 0.662463,
+          "timestamp": 1744294000814,
+          "step": 7
+        },
+        {
+          "value": 0.663082,
+          "timestamp": 1744295231550,
+          "step": 8
+        },
+        {
+          "value": 0.663277,
+          "timestamp": 1744296461632,
+          "step": 9
+        },
+        {
+          "value": 0.664204,
+          "timestamp": 1744297697315,
+          "step": 10
+        },
+        {
+          "value": 0.664419,
+          "timestamp": 1744298937086,
+          "step": 11
+        },
+        {
+          "value": 0.66455,
+          "timestamp": 1744300161858,
+          "step": 12
+        },
+        {
+          "value": 0.66512,
+          "timestamp": 1744301387562,
+          "step": 13
+        },
+        {
+          "value": 0.665272,
+          "timestamp": 1744302614034,
+          "step": 14
+        },
+        {
+          "value": 0.665675,
+          "timestamp": 1744303848786,
+          "step": 15
+        },
+        {
+          "value": 0.666236,
+          "timestamp": 1744305076286,
+          "step": 16
+        },
+        {
+          "value": 0.665953,
+          "timestamp": 1744306309845,
+          "step": 17
+        },
+        {
+          "value": 0.666448,
+          "timestamp": 1744307547457,
+          "step": 18
+        },
+        {
+          "value": 0.666508,
+          "timestamp": 1744308808230,
+          "step": 19
+        },
+        {
+          "value": 0.666642,
+          "timestamp": 1744310100662,
+          "step": 20
+        },
+        {
+          "value": 0.666904,
+          "timestamp": 1744311400698,
+          "step": 21
+        },
+        {
+          "value": 0.667429,
+          "timestamp": 1744312696211,
+          "step": 22
+        },
+        {
+          "value": 0.667182,
+          "timestamp": 1744313972203,
+          "step": 23
+        },
+        {
+          "value": 0.667378,
+          "timestamp": 1744315258195,
+          "step": 24
+        }
+      ],
+      "Subset_Accuracy_TEST": [
+        {
+          "value": 0.779506,
+          "timestamp": 1744315517904,
+          "step": 0
+        }
+      ],
+      "Recall_Macro_VAL": [
+        {
+          "value": 0.800193,
+          "timestamp": 1744285498423,
+          "step": 0
+        },
+        {
+          "value": 0.804116,
+          "timestamp": 1744286724137,
+          "step": 1
+        },
+        {
+          "value": 0.809394,
+          "timestamp": 1744287954555,
+          "step": 2
+        },
+        {
+          "value": 0.810269,
+          "timestamp": 1744289178615,
+          "step": 3
+        },
+        {
+          "value": 0.812838,
+          "timestamp": 1744290412891,
+          "step": 4
+        },
+        {
+          "value": 0.8089,
+          "timestamp": 1744291652598,
+          "step": 5
+        },
+        {
+          "value": 0.811038,
+          "timestamp": 1744292891054,
+          "step": 6
+        },
+        {
+          "value": 0.810606,
+          "timestamp": 1744294127983,
+          "step": 7
+        },
+        {
+          "value": 0.810925,
+          "timestamp": 1744295358464,
+          "step": 8
+        },
+        {
+          "value": 0.810873,
+          "timestamp": 1744296588441,
+          "step": 9
+        },
+        {
+          "value": 0.808738,
+          "timestamp": 1744297824719,
+          "step": 10
+        },
+        {
+          "value": 0.80941,
+          "timestamp": 1744299063651,
+          "step": 11
+        },
+        {
+          "value": 0.809063,
+          "timestamp": 1744300288186,
+          "step": 12
+        },
+        {
+          "value": 0.813983,
+          "timestamp": 1744301514028,
+          "step": 13
+        },
+        {
+          "value": 0.817048,
+          "timestamp": 1744302741304,
+          "step": 14
+        },
+        {
+          "value": 0.808606,
+          "timestamp": 1744303976132,
+          "step": 15
+        },
+        {
+          "value": 0.814335,
+          "timestamp": 1744305205974,
+          "step": 16
+        },
+        {
+          "value": 0.808394,
+          "timestamp": 1744306438391,
+          "step": 17
+        },
+        {
+          "value": 0.806863,
+          "timestamp": 1744307676316,
+          "step": 18
+        },
+        {
+          "value": 0.810644,
+          "timestamp": 1744308942029,
+          "step": 19
+        },
+        {
+          "value": 0.807459,
+          "timestamp": 1744310235018,
+          "step": 20
+        },
+        {
+          "value": 0.811395,
+          "timestamp": 1744311536617,
+          "step": 21
+        },
+        {
+          "value": 0.810239,
+          "timestamp": 1744312830740,
+          "step": 22
+        },
+        {
+          "value": 0.812928,
+          "timestamp": 1744314109171,
+          "step": 23
+        },
+        {
+          "value": 0.812342,
+          "timestamp": 1744315387340,
+          "step": 24
+        }
+      ],
+      "Hamming_loss_VAL": [
+        {
+          "value": 0.223175,
+          "timestamp": 1744285498406,
+          "step": 0
+        },
+        {
+          "value": 0.216588,
+          "timestamp": 1744286724113,
+          "step": 1
+        },
+        {
+          "value": 0.214049,
+          "timestamp": 1744287954523,
+          "step": 2
+        },
+        {
+          "value": 0.214838,
+          "timestamp": 1744289178589,
+          "step": 3
+        },
+        {
+          "value": 0.210702,
+          "timestamp": 1744290412866,
+          "step": 4
+        },
+        {
+          "value": 0.209133,
+          "timestamp": 1744291652572,
+          "step": 5
+        },
+        {
+          "value": 0.209819,
+          "timestamp": 1744292891023,
+          "step": 6
+        },
+        {
+          "value": 0.208781,
+          "timestamp": 1744294127959,
+          "step": 7
+        },
+        {
+          "value": 0.208893,
+          "timestamp": 1744295358443,
+          "step": 8
+        },
+        {
+          "value": 0.20827,
+          "timestamp": 1744296588413,
+          "step": 9
+        },
+        {
+          "value": 0.207164,
+          "timestamp": 1744297824695,
+          "step": 10
+        },
+        {
+          "value": 0.206361,
+          "timestamp": 1744299063630,
+          "step": 11
+        },
+        {
+          "value": 0.203034,
+          "timestamp": 1744300288165,
+          "step": 12
+        },
+        {
+          "value": 0.208256,
+          "timestamp": 1744301514009,
+          "step": 13
+        },
+        {
+          "value": 0.207221,
+          "timestamp": 1744302741279,
+          "step": 14
+        },
+        {
+          "value": 0.202782,
+          "timestamp": 1744303976112,
+          "step": 15
+        },
+        {
+          "value": 0.205503,
+          "timestamp": 1744305205952,
+          "step": 16
+        },
+        {
+          "value": 0.204625,
+          "timestamp": 1744306438363,
+          "step": 17
+        },
+        {
+          "value": 0.201603,
+          "timestamp": 1744307676292,
+          "step": 18
+        },
+        {
+          "value": 0.203551,
+          "timestamp": 1744308942009,
+          "step": 19
+        },
+        {
+          "value": 0.202058,
+          "timestamp": 1744310235000,
+          "step": 20
+        },
+        {
+          "value": 0.202249,
+          "timestamp": 1744311536592,
+          "step": 21
+        },
+        {
+          "value": 0.203521,
+          "timestamp": 1744312830721,
+          "step": 22
+        },
+        {
+          "value": 0.203069,
+          "timestamp": 1744314109150,
+          "step": 23
+        },
+        {
+          "value": 0.206471,
+          "timestamp": 1744315387315,
+          "step": 24
+        }
+      ],
+      "F1_Score_Weighted_TRAIN": [
+        {
+          "value": 0.671377,
+          "timestamp": 1744285368928,
+          "step": 0
+        },
+        {
+          "value": 0.684646,
+          "timestamp": 1744286597984,
+          "step": 1
+        },
+        {
+          "value": 0.68791,
+          "timestamp": 1744287825064,
+          "step": 2
+        },
+        {
+          "value": 0.690958,
+          "timestamp": 1744289052191,
+          "step": 3
+        },
+        {
+          "value": 0.693102,
+          "timestamp": 1744290285234,
+          "step": 4
+        },
+        {
+          "value": 0.694051,
+          "timestamp": 1744291524086,
+          "step": 5
+        },
+        {
+          "value": 0.695323,
+          "timestamp": 1744292763685,
+          "step": 6
+        },
+        {
+          "value": 0.696287,
+          "timestamp": 1744294000791,
+          "step": 7
+        },
+        {
+          "value": 0.697197,
+          "timestamp": 1744295231528,
+          "step": 8
+        },
+        {
+          "value": 0.69754,
+          "timestamp": 1744296461610,
+          "step": 9
+        },
+        {
+          "value": 0.698255,
+          "timestamp": 1744297697294,
+          "step": 10
+        },
+        {
+          "value": 0.69872,
+          "timestamp": 1744298937061,
+          "step": 11
+        },
+        {
+          "value": 0.699092,
+          "timestamp": 1744300161831,
+          "step": 12
+        },
+        {
+          "value": 0.699512,
+          "timestamp": 1744301387539,
+          "step": 13
+        },
+        {
+          "value": 0.699662,
+          "timestamp": 1744302614012,
+          "step": 14
+        },
+        {
+          "value": 0.700314,
+          "timestamp": 1744303848764,
+          "step": 15
+        },
+        {
+          "value": 0.700604,
+          "timestamp": 1744305076261,
+          "step": 16
+        },
+        {
+          "value": 0.700747,
+          "timestamp": 1744306309827,
+          "step": 17
+        },
+        {
+          "value": 0.701301,
+          "timestamp": 1744307547437,
+          "step": 18
+        },
+        {
+          "value": 0.701043,
+          "timestamp": 1744308808211,
+          "step": 19
+        },
+        {
+          "value": 0.701371,
+          "timestamp": 1744310100645,
+          "step": 20
+        },
+        {
+          "value": 0.70151,
+          "timestamp": 1744311400680,
+          "step": 21
+        },
+        {
+          "value": 0.701979,
+          "timestamp": 1744312696188,
+          "step": 22
+        },
+        {
+          "value": 0.70215,
+          "timestamp": 1744313972181,
+          "step": 23
+        },
+        {
+          "value": 0.702246,
+          "timestamp": 1744315258173,
+          "step": 24
+        }
+      ],
+      "Precision_Weighted_VAL": [
+        {
+          "value": 0.647798,
+          "timestamp": 1744285498443,
+          "step": 0
+        },
+        {
+          "value": 0.648327,
+          "timestamp": 1744286724150,
+          "step": 1
+        },
+        {
+          "value": 0.649873,
+          "timestamp": 1744287954568,
+          "step": 2
+        },
+        {
+          "value": 0.651212,
+          "timestamp": 1744289178628,
+          "step": 3
+        },
+        {
+          "value": 0.651653,
+          "timestamp": 1744290412905,
+          "step": 4
+        },
+        {
+          "value": 0.654131,
+          "timestamp": 1744291652612,
+          "step": 5
+        },
+        {
+          "value": 0.655503,
+          "timestamp": 1744292891068,
+          "step": 6
+        },
+        {
+          "value": 0.654599,
+          "timestamp": 1744294127997,
+          "step": 7
+        },
+        {
+          "value": 0.657545,
+          "timestamp": 1744295358479,
+          "step": 8
+        },
+        {
+          "value": 0.656747,
+          "timestamp": 1744296588455,
+          "step": 9
+        },
+        {
+          "value": 0.657006,
+          "timestamp": 1744297824733,
+          "step": 10
+        },
+        {
+          "value": 0.660089,
+          "timestamp": 1744299063665,
+          "step": 11
+        },
+        {
+          "value": 0.658048,
+          "timestamp": 1744300288200,
+          "step": 12
+        },
+        {
+          "value": 0.65677,
+          "timestamp": 1744301514042,
+          "step": 13
+        },
+        {
+          "value": 0.65763,
+          "timestamp": 1744302741318,
+          "step": 14
+        },
+        {
+          "value": 0.660505,
+          "timestamp": 1744303976145,
+          "step": 15
+        },
+        {
+          "value": 0.655202,
+          "timestamp": 1744305205992,
+          "step": 16
+        },
+        {
+          "value": 0.658384,
+          "timestamp": 1744306438404,
+          "step": 17
+        },
+        {
+          "value": 0.658942,
+          "timestamp": 1744307676331,
+          "step": 18
+        },
+        {
+          "value": 0.657043,
+          "timestamp": 1744308942040,
+          "step": 19
+        },
+        {
+          "value": 0.6583,
+          "timestamp": 1744310235030,
+          "step": 20
+        },
+        {
+          "value": 0.659256,
+          "timestamp": 1744311536631,
+          "step": 21
+        },
+        {
+          "value": 0.661169,
+          "timestamp": 1744312830757,
+          "step": 22
+        },
+        {
+          "value": 0.654917,
+          "timestamp": 1744314109188,
+          "step": 23
+        },
+        {
+          "value": 0.658368,
+          "timestamp": 1744315387353,
+          "step": 24
+        }
+      ],
+      "Precision_Sample_VAL": [
+        {
+          "value": 0.492668,
+          "timestamp": 1744285498441,
+          "step": 0
+        },
+        {
+          "value": 0.498856,
+          "timestamp": 1744286724148,
+          "step": 1
+        },
+        {
+          "value": 0.503041,
+          "timestamp": 1744287954566,
+          "step": 2
+        },
+        {
+          "value": 0.502397,
+          "timestamp": 1744289178626,
+          "step": 3
+        },
+        {
+          "value": 0.507757,
+          "timestamp": 1744290412903,
+          "step": 4
+        },
+        {
+          "value": 0.510523,
+          "timestamp": 1744291652610,
+          "step": 5
+        },
+        {
+          "value": 0.509148,
+          "timestamp": 1744292891065,
+          "step": 6
+        },
+        {
+          "value": 0.51108,
+          "timestamp": 1744294127995,
+          "step": 7
+        },
+        {
+          "value": 0.511759,
+          "timestamp": 1744295358477,
+          "step": 8
+        },
+        {
+          "value": 0.511234,
+          "timestamp": 1744296588453,
+          "step": 9
+        },
+        {
+          "value": 0.514343,
+          "timestamp": 1744297824731,
+          "step": 10
+        },
+        {
+          "value": 0.514717,
+          "timestamp": 1744299063663,
+          "step": 11
+        },
+        {
+          "value": 0.519949,
+          "timestamp": 1744300288198,
+          "step": 12
+        },
+        {
+          "value": 0.51188,
+          "timestamp": 1744301514040,
+          "step": 13
+        },
+        {
+          "value": 0.513683,
+          "timestamp": 1744302741315,
+          "step": 14
+        },
+        {
+          "value": 0.520349,
+          "timestamp": 1744303976143,
+          "step": 15
+        },
+        {
+          "value": 0.515663,
+          "timestamp": 1744305205990,
+          "step": 16
+        },
+        {
+          "value": 0.517371,
+          "timestamp": 1744306438402,
+          "step": 17
+        },
+        {
+          "value": 0.521972,
+          "timestamp": 1744307676329,
+          "step": 18
+        },
+        {
+          "value": 0.518914,
+          "timestamp": 1744308942038,
+          "step": 19
+        },
+        {
+          "value": 0.521389,
+          "timestamp": 1744310235028,
+          "step": 20
+        },
+        {
+          "value": 0.521164,
+          "timestamp": 1744311536629,
+          "step": 21
+        },
+        {
+          "value": 0.519196,
+          "timestamp": 1744312830755,
+          "step": 22
+        },
+        {
+          "value": 0.519321,
+          "timestamp": 1744314109185,
+          "step": 23
+        },
+        {
+          "value": 0.514177,
+          "timestamp": 1744315387351,
+          "step": 24
+        }
+      ],
+      "Precision_Micro_TRAIN": [
+        {
+          "value": 0.501389,
+          "timestamp": 1744285368939,
+          "step": 0
+        },
+        {
+          "value": 0.51713,
+          "timestamp": 1744286597996,
+          "step": 1
+        },
+        {
+          "value": 0.521121,
+          "timestamp": 1744287825076,
+          "step": 2
+        },
+        {
+          "value": 0.524921,
+          "timestamp": 1744289052208,
+          "step": 3
+        },
+        {
+          "value": 0.527917,
+          "timestamp": 1744290285261,
+          "step": 4
+        },
+        {
+          "value": 0.52966,
+          "timestamp": 1744291524098,
+          "step": 5
+        },
+        {
+          "value": 0.530977,
+          "timestamp": 1744292763696,
+          "step": 6
+        },
+        {
+          "value": 0.532531,
+          "timestamp": 1744294000804,
+          "step": 7
+        },
+        {
+          "value": 0.533716,
+          "timestamp": 1744295231540,
+          "step": 8
+        },
+        {
+          "value": 0.53395,
+          "timestamp": 1744296461622,
+          "step": 9
+        },
+        {
+          "value": 0.534891,
+          "timestamp": 1744297697309,
+          "step": 10
+        },
+        {
+          "value": 0.535885,
+          "timestamp": 1744298937076,
+          "step": 11
+        },
+        {
+          "value": 0.535986,
+          "timestamp": 1744300161848,
+          "step": 12
+        },
+        {
+          "value": 0.537221,
+          "timestamp": 1744301387555,
+          "step": 13
+        },
+        {
+          "value": 0.53688,
+          "timestamp": 1744302614024,
+          "step": 14
+        },
+        {
+          "value": 0.537916,
+          "timestamp": 1744303848776,
+          "step": 15
+        },
+        {
+          "value": 0.538472,
+          "timestamp": 1744305076273,
+          "step": 16
+        },
+        {
+          "value": 0.538518,
+          "timestamp": 1744306309839,
+          "step": 17
+        },
+        {
+          "value": 0.539345,
+          "timestamp": 1744307547448,
+          "step": 18
+        },
+        {
+          "value": 0.539229,
+          "timestamp": 1744308808223,
+          "step": 19
+        },
+        {
+          "value": 0.539288,
+          "timestamp": 1744310100655,
+          "step": 20
+        },
+        {
+          "value": 0.539858,
+          "timestamp": 1744311400692,
+          "step": 21
+        },
+        {
+          "value": 0.540085,
+          "timestamp": 1744312696204,
+          "step": 22
+        },
+        {
+          "value": 0.540365,
+          "timestamp": 1744313972197,
+          "step": 23
+        },
+        {
+          "value": 0.540572,
+          "timestamp": 1744315258184,
+          "step": 24
+        }
+      ],
+      "Recall_Weighted_TEST": [
+        {
+          "value": 0.779973,
+          "timestamp": 1744315517922,
+          "step": 0
+        }
+      ],
+      "Precision_Sample_TRAIN": [
+        {
+          "value": 0.493224,
+          "timestamp": 1744285368944,
+          "step": 0
+        },
+        {
+          "value": 0.508588,
+          "timestamp": 1744286598001,
+          "step": 1
+        },
+        {
+          "value": 0.512547,
+          "timestamp": 1744287825081,
+          "step": 2
+        },
+        {
+          "value": 0.51649,
+          "timestamp": 1744289052215,
+          "step": 3
+        },
+        {
+          "value": 0.519475,
+          "timestamp": 1744290285266,
+          "step": 4
+        },
+        {
+          "value": 0.521178,
+          "timestamp": 1744291524105,
+          "step": 5
+        },
+        {
+          "value": 0.522414,
+          "timestamp": 1744292763700,
+          "step": 6
+        },
+        {
+          "value": 0.524173,
+          "timestamp": 1744294000812,
+          "step": 7
+        },
+        {
+          "value": 0.525186,
+          "timestamp": 1744295231547,
+          "step": 8
+        },
+        {
+          "value": 0.52544,
+          "timestamp": 1744296461627,
+          "step": 9
+        },
+        {
+          "value": 0.526409,
+          "timestamp": 1744297697313,
+          "step": 10
+        },
+        {
+          "value": 0.527294,
+          "timestamp": 1744298937081,
+          "step": 11
+        },
+        {
+          "value": 0.527619,
+          "timestamp": 1744300161853,
+          "step": 12
+        },
+        {
+          "value": 0.528668,
+          "timestamp": 1744301387560,
+          "step": 13
+        },
+        {
+          "value": 0.528548,
+          "timestamp": 1744302614028,
+          "step": 14
+        },
+        {
+          "value": 0.529587,
+          "timestamp": 1744303848781,
+          "step": 15
+        },
+        {
+          "value": 0.530085,
+          "timestamp": 1744305076281,
+          "step": 16
+        },
+        {
+          "value": 0.529968,
+          "timestamp": 1744306309843,
+          "step": 17
+        },
+        {
+          "value": 0.531073,
+          "timestamp": 1744307547452,
+          "step": 18
+        },
+        {
+          "value": 0.530478,
+          "timestamp": 1744308808228,
+          "step": 19
+        },
+        {
+          "value": 0.53082,
+          "timestamp": 1744310100660,
+          "step": 20
+        },
+        {
+          "value": 0.531354,
+          "timestamp": 1744311400696,
+          "step": 21
+        },
+        {
+          "value": 0.531683,
+          "timestamp": 1744312696208,
+          "step": 22
+        },
+        {
+          "value": 0.532046,
+          "timestamp": 1744313972201,
+          "step": 23
+        },
+        {
+          "value": 0.532108,
+          "timestamp": 1744315258192,
+          "step": 24
+        }
+      ],
+      "F1_Score_Sample_VAL": [
+        {
+          "value": 0.584908,
+          "timestamp": 1744285498417,
+          "step": 0
+        },
+        {
+          "value": 0.592903,
+          "timestamp": 1744286724129,
+          "step": 1
+        },
+        {
+          "value": 0.59922,
+          "timestamp": 1744287954547,
+          "step": 2
+        },
+        {
+          "value": 0.598592,
+          "timestamp": 1744289178606,
+          "step": 3
+        },
+        {
+          "value": 0.604134,
+          "timestamp": 1744290412879,
+          "step": 4
+        },
+        {
+          "value": 0.60573,
+          "timestamp": 1744291652590,
+          "step": 5
+        },
+        {
+          "value": 0.603421,
+          "timestamp": 1744292891046,
+          "step": 6
+        },
+        {
+          "value": 0.605897,
+          "timestamp": 1744294127976,
+          "step": 7
+        },
+        {
+          "value": 0.605483,
+          "timestamp": 1744295358457,
+          "step": 8
+        },
+        {
+          "value": 0.604688,
+          "timestamp": 1744296588433,
+          "step": 9
+        },
+        {
+          "value": 0.607556,
+          "timestamp": 1744297824711,
+          "step": 10
+        },
+        {
+          "value": 0.60663,
+          "timestamp": 1744299063643,
+          "step": 11
+        },
+        {
+          "value": 0.613164,
+          "timestamp": 1744300288178,
+          "step": 12
+        },
+        {
+          "value": 0.6076,
+          "timestamp": 1744301514021,
+          "step": 13
+        },
+        {
+          "value": 0.610234,
+          "timestamp": 1744302741296,
+          "step": 14
+        },
+        {
+          "value": 0.612008,
+          "timestamp": 1744303976124,
+          "step": 15
+        },
+        {
+          "value": 0.610995,
+          "timestamp": 1744305205966,
+          "step": 16
+        },
+        {
+          "value": 0.610084,
+          "timestamp": 1744306438383,
+          "step": 17
+        },
+        {
+          "value": 0.614121,
+          "timestamp": 1744307676308,
+          "step": 18
+        },
+        {
+          "value": 0.612905,
+          "timestamp": 1744308942021,
+          "step": 19
+        },
+        {
+          "value": 0.612583,
+          "timestamp": 1744310235011,
+          "step": 20
+        },
+        {
+          "value": 0.614282,
+          "timestamp": 1744311536611,
+          "step": 21
+        },
+        {
+          "value": 0.61195,
+          "timestamp": 1744312830733,
+          "step": 22
+        },
+        {
+          "value": 0.613754,
+          "timestamp": 1744314109163,
+          "step": 23
+        },
+        {
+          "value": 0.607295,
+          "timestamp": 1744315387332,
+          "step": 24
+        }
+      ],
+      "Recall_Weighted_TRAIN": [
+        {
+          "value": 0.771895,
+          "timestamp": 1744285368937,
+          "step": 0
+        },
+        {
+          "value": 0.785499,
+          "timestamp": 1744286597993,
+          "step": 1
+        },
+        {
+          "value": 0.789057,
+          "timestamp": 1744287825074,
+          "step": 2
+        },
+        {
+          "value": 0.792301,
+          "timestamp": 1744289052204,
+          "step": 3
+        },
+        {
+          "value": 0.794354,
+          "timestamp": 1744290285259,
+          "step": 4
+        },
+        {
+          "value": 0.795076,
+          "timestamp": 1744291524096,
+          "step": 5
+        },
+        {
+          "value": 0.796418,
+          "timestamp": 1744292763694,
+          "step": 6
+        },
+        {
+          "value": 0.797576,
+          "timestamp": 1744294000802,
+          "step": 7
+        },
+        {
+          "value": 0.798509,
+          "timestamp": 1744295231538,
+          "step": 8
+        },
+        {
+          "value": 0.798888,
+          "timestamp": 1744296461620,
+          "step": 9
+        },
+        {
+          "value": 0.799343,
+          "timestamp": 1744297697307,
+          "step": 10
+        },
+        {
+          "value": 0.799828,
+          "timestamp": 1744298937073,
+          "step": 11
+        },
+        {
+          "value": 0.800566,
+          "timestamp": 1744300161843,
+          "step": 12
+        },
+        {
+          "value": 0.800581,
+          "timestamp": 1744301387553,
+          "step": 13
+        },
+        {
+          "value": 0.800804,
+          "timestamp": 1744302614022,
+          "step": 14
+        },
+        {
+          "value": 0.801589,
+          "timestamp": 1744303848774,
+          "step": 15
+        },
+        {
+          "value": 0.801516,
+          "timestamp": 1744305076271,
+          "step": 16
+        },
+        {
+          "value": 0.802012,
+          "timestamp": 1744306309836,
+          "step": 17
+        },
+        {
+          "value": 0.802532,
+          "timestamp": 1744307547446,
+          "step": 18
+        },
+        {
+          "value": 0.801941,
+          "timestamp": 1744308808220,
+          "step": 19
+        },
+        {
+          "value": 0.802493,
+          "timestamp": 1744310100653,
+          "step": 20
+        },
+        {
+          "value": 0.802442,
+          "timestamp": 1744311400689,
+          "step": 21
+        },
+        {
+          "value": 0.802831,
+          "timestamp": 1744312696201,
+          "step": 22
+        },
+        {
+          "value": 0.803438,
+          "timestamp": 1744313972194,
+          "step": 23
+        },
+        {
+          "value": 0.803323,
+          "timestamp": 1744315258182,
+          "step": 24
+        }
+      ],
+      "F1_Score_Sample_TRAIN": [
+        {
+          "value": 0.5832,
+          "timestamp": 1744285368925,
+          "step": 0
+        },
+        {
+          "value": 0.598991,
+          "timestamp": 1744286597982,
+          "step": 1
+        },
+        {
+          "value": 0.603228,
+          "timestamp": 1744287825061,
+          "step": 2
+        },
+        {
+          "value": 0.60719,
+          "timestamp": 1744289052189,
+          "step": 3
+        },
+        {
+          "value": 0.609975,
+          "timestamp": 1744290285231,
+          "step": 4
+        },
+        {
+          "value": 0.61147,
+          "timestamp": 1744291524084,
+          "step": 5
+        },
+        {
+          "value": 0.612828,
+          "timestamp": 1744292763682,
+          "step": 6
+        },
+        {
+          "value": 0.614408,
+          "timestamp": 1744294000787,
+          "step": 7
+        },
+        {
+          "value": 0.615461,
+          "timestamp": 1744295231526,
+          "step": 8
+        },
+        {
+          "value": 0.615853,
+          "timestamp": 1744296461608,
+          "step": 9
+        },
+        {
+          "value": 0.616731,
+          "timestamp": 1744297697291,
+          "step": 10
+        },
+        {
+          "value": 0.617499,
+          "timestamp": 1744298937058,
+          "step": 11
+        },
+        {
+          "value": 0.61794,
+          "timestamp": 1744300161829,
+          "step": 12
+        },
+        {
+          "value": 0.61871,
+          "timestamp": 1744301387537,
+          "step": 13
+        },
+        {
+          "value": 0.618663,
+          "timestamp": 1744302614010,
+          "step": 14
+        },
+        {
+          "value": 0.619761,
+          "timestamp": 1744303848762,
+          "step": 15
+        },
+        {
+          "value": 0.620093,
+          "timestamp": 1744305076258,
+          "step": 16
+        },
+        {
+          "value": 0.620056,
+          "timestamp": 1744306309825,
+          "step": 17
+        },
+        {
+          "value": 0.621017,
+          "timestamp": 1744307547434,
+          "step": 18
+        },
+        {
+          "value": 0.620486,
+          "timestamp": 1744308808209,
+          "step": 19
+        },
+        {
+          "value": 0.620948,
+          "timestamp": 1744310100643,
+          "step": 20
+        },
+        {
+          "value": 0.621328,
+          "timestamp": 1744311400678,
+          "step": 21
+        },
+        {
+          "value": 0.621607,
+          "timestamp": 1744312696186,
+          "step": 22
+        },
+        {
+          "value": 0.62212,
+          "timestamp": 1744313972179,
+          "step": 23
+        },
+        {
+          "value": 0.622119,
+          "timestamp": 1744315258171,
+          "step": 24
+        }
+      ],
+      "F1_Score_Macro_VAL": [
+        {
+          "value": 0.606605,
+          "timestamp": 1744285498414,
+          "step": 0
+        },
+        {
+          "value": 0.616902,
+          "timestamp": 1744286724126,
+          "step": 1
+        },
+        {
+          "value": 0.622586,
+          "timestamp": 1744287954544,
+          "step": 2
+        },
+        {
+          "value": 0.621278,
+          "timestamp": 1744289178603,
+          "step": 3
+        },
+        {
+          "value": 0.627485,
+          "timestamp": 1744290412876,
+          "step": 4
+        },
+        {
+          "value": 0.628606,
+          "timestamp": 1744291652588,
+          "step": 5
+        },
+        {
+          "value": 0.626723,
+          "timestamp": 1744292891043,
+          "step": 6
+        },
+        {
+          "value": 0.62851,
+          "timestamp": 1744294127973,
+          "step": 7
+        },
+        {
+          "value": 0.627804,
+          "timestamp": 1744295358453,
+          "step": 8
+        },
+        {
+          "value": 0.628129,
+          "timestamp": 1744296588430,
+          "step": 9
+        },
+        {
+          "value": 0.629815,
+          "timestamp": 1744297824708,
+          "step": 10
+        },
+        {
+          "value": 0.629919,
+          "timestamp": 1744299063640,
+          "step": 11
+        },
+        {
+          "value": 0.635879,
+          "timestamp": 1744300288175,
+          "step": 12
+        },
+        {
+          "value": 0.630414,
+          "timestamp": 1744301514018,
+          "step": 13
+        },
+        {
+          "value": 0.632385,
+          "timestamp": 1744302741293,
+          "step": 14
+        },
+        {
+          "value": 0.635186,
+          "timestamp": 1744303976122,
+          "step": 15
+        },
+        {
+          "value": 0.634283,
+          "timestamp": 1744305205962,
+          "step": 16
+        },
+        {
+          "value": 0.632965,
+          "timestamp": 1744306438380,
+          "step": 17
+        },
+        {
+          "value": 0.637189,
+          "timestamp": 1744307676302,
+          "step": 18
+        },
+        {
+          "value": 0.635803,
+          "timestamp": 1744308942019,
+          "step": 19
+        },
+        {
+          "value": 0.635934,
+          "timestamp": 1744310235008,
+          "step": 20
+        },
+        {
+          "value": 0.637216,
+          "timestamp": 1744311536608,
+          "step": 21
+        },
+        {
+          "value": 0.634818,
+          "timestamp": 1744312830730,
+          "step": 22
+        },
+        {
+          "value": 0.636922,
+          "timestamp": 1744314109161,
+          "step": 23
+        },
+        {
+          "value": 0.630964,
+          "timestamp": 1744315387329,
+          "step": 24
+        }
+      ],
+      "Precision_Macro_VAL": [
+        {
+          "value": 0.43969,
+          "timestamp": 1744285498438,
+          "step": 0
+        },
+        {
+          "value": 0.445589,
+          "timestamp": 1744286724146,
+          "step": 1
+        },
+        {
+          "value": 0.448314,
+          "timestamp": 1744287954564,
+          "step": 2
+        },
+        {
+          "value": 0.448179,
+          "timestamp": 1744289178624,
+          "step": 3
+        },
+        {
+          "value": 0.453979,
+          "timestamp": 1744290412901,
+          "step": 4
+        },
+        {
+          "value": 0.454672,
+          "timestamp": 1744291652608,
+          "step": 5
+        },
+        {
+          "value": 0.455066,
+          "timestamp": 1744292891063,
+          "step": 6
+        },
+        {
+          "value": 0.453246,
+          "timestamp": 1744294127993,
+          "step": 7
+        },
+        {
+          "value": 0.456282,
+          "timestamp": 1744295358474,
+          "step": 8
+        },
+        {
+          "value": 0.454234,
+          "timestamp": 1744296588451,
+          "step": 9
+        },
+        {
+          "value": 0.457253,
+          "timestamp": 1744297824729,
+          "step": 10
+        },
+        {
+          "value": 0.458746,
+          "timestamp": 1744299063661,
+          "step": 11
+        },
+        {
+          "value": 0.459842,
+          "timestamp": 1744300288195,
+          "step": 12
+        },
+        {
+          "value": 0.455565,
+          "timestamp": 1744301514037,
+          "step": 13
+        },
+        {
+          "value": 0.45749,
+          "timestamp": 1744302741313,
+          "step": 14
+        },
+        {
+          "value": 0.461536,
+          "timestamp": 1744303976140,
+          "step": 15
+        },
+        {
+          "value": 0.458098,
+          "timestamp": 1744305205988,
+          "step": 16
+        },
+        {
+          "value": 0.459912,
+          "timestamp": 1744306438400,
+          "step": 17
+        },
+        {
+          "value": 0.462,
+          "timestamp": 1744307676326,
+          "step": 18
+        },
+        {
+          "value": 0.460077,
+          "timestamp": 1744308942037,
+          "step": 19
+        },
+        {
+          "value": 0.461477,
+          "timestamp": 1744310235026,
+          "step": 20
+        },
+        {
+          "value": 0.462481,
+          "timestamp": 1744311536626,
+          "step": 21
+        },
+        {
+          "value": 0.461693,
+          "timestamp": 1744312830752,
+          "step": 22
+        },
+        {
+          "value": 0.46042,
+          "timestamp": 1744314109183,
+          "step": 23
+        },
+        {
+          "value": 0.456985,
+          "timestamp": 1744315387349,
+          "step": 24
+        }
+      ],
+      "F1_Score_Weighted_VAL": [
+        {
+          "value": 0.673981,
+          "timestamp": 1744285498419,
+          "step": 0
+        },
+        {
+          "value": 0.681134,
+          "timestamp": 1744286724132,
+          "step": 1
+        },
+        {
+          "value": 0.68648,
+          "timestamp": 1744287954550,
+          "step": 2
+        },
+        {
+          "value": 0.685622,
+          "timestamp": 1744289178609,
+          "step": 3
+        },
+        {
+          "value": 0.691174,
+          "timestamp": 1744290412882,
+          "step": 4
+        },
+        {
+          "value": 0.691172,
+          "timestamp": 1744291652593,
+          "step": 5
+        },
+        {
+          "value": 0.689201,
+          "timestamp": 1744292891048,
+          "step": 6
+        },
+        {
+          "value": 0.69049,
+          "timestamp": 1744294127978,
+          "step": 7
+        },
+        {
+          "value": 0.690674,
+          "timestamp": 1744295358459,
+          "step": 8
+        },
+        {
+          "value": 0.689617,
+          "timestamp": 1744296588436,
+          "step": 9
+        },
+        {
+          "value": 0.691178,
+          "timestamp": 1744297824714,
+          "step": 10
+        },
+        {
+          "value": 0.691709,
+          "timestamp": 1744299063646,
+          "step": 11
+        },
+        {
+          "value": 0.69496,
+          "timestamp": 1744300288181,
+          "step": 12
+        },
+        {
+          "value": 0.693583,
+          "timestamp": 1744301514023,
+          "step": 13
+        },
+        {
+          "value": 0.695399,
+          "timestamp": 1744302741299,
+          "step": 14
+        },
+        {
+          "value": 0.695264,
+          "timestamp": 1744303976127,
+          "step": 15
+        },
+        {
+          "value": 0.694913,
+          "timestamp": 1744305205968,
+          "step": 16
+        },
+        {
+          "value": 0.692758,
+          "timestamp": 1744306438385,
+          "step": 17
+        },
+        {
+          "value": 0.695697,
+          "timestamp": 1744307676311,
+          "step": 18
+        },
+        {
+          "value": 0.694839,
+          "timestamp": 1744308942024,
+          "step": 19
+        },
+        {
+          "value": 0.693845,
+          "timestamp": 1744310235013,
+          "step": 20
+        },
+        {
+          "value": 0.696455,
+          "timestamp": 1744311536613,
+          "step": 21
+        },
+        {
+          "value": 0.695082,
+          "timestamp": 1744312830735,
+          "step": 22
+        },
+        {
+          "value": 0.69507,
+          "timestamp": 1744314109166,
+          "step": 23
+        },
+        {
+          "value": 0.69189,
+          "timestamp": 1744315387335,
+          "step": 24
+        }
+      ],
+      "Precision_Sample_TEST": [
+        {
+          "value": 0.525932,
+          "timestamp": 1744315517929,
+          "step": 0
+        }
+      ],
+      "F1_Score_Macro_TRAIN": [
+        {
+          "value": 0.607528,
+          "timestamp": 1744285368923,
+          "step": 0
+        },
+        {
+          "value": 0.623379,
+          "timestamp": 1744286597979,
+          "step": 1
+        },
+        {
+          "value": 0.627395,
+          "timestamp": 1744287825059,
+          "step": 2
+        },
+        {
+          "value": 0.63117,
+          "timestamp": 1744289052187,
+          "step": 3
+        },
+        {
+          "value": 0.634001,
+          "timestamp": 1744290285228,
+          "step": 4
+        },
+        {
+          "value": 0.635504,
+          "timestamp": 1744291524081,
+          "step": 5
+        },
+        {
+          "value": 0.636872,
+          "timestamp": 1744292763680,
+          "step": 6
+        },
+        {
+          "value": 0.638349,
+          "timestamp": 1744294000785,
+          "step": 7
+        },
+        {
+          "value": 0.63951,
+          "timestamp": 1744295231524,
+          "step": 8
+        },
+        {
+          "value": 0.639807,
+          "timestamp": 1744296461606,
+          "step": 9
+        },
+        {
+          "value": 0.640632,
+          "timestamp": 1744297697289,
+          "step": 10
+        },
+        {
+          "value": 0.641493,
+          "timestamp": 1744298937056,
+          "step": 11
+        },
+        {
+          "value": 0.641816,
+          "timestamp": 1744300161827,
+          "step": 12
+        },
+        {
+          "value": 0.642701,
+          "timestamp": 1744301387534,
+          "step": 13
+        },
+        {
+          "value": 0.642534,
+          "timestamp": 1744302614007,
+          "step": 14
+        },
+        {
+          "value": 0.643514,
+          "timestamp": 1744303848760,
+          "step": 15
+        },
+        {
+          "value": 0.643899,
+          "timestamp": 1744305076256,
+          "step": 16
+        },
+        {
+          "value": 0.644099,
+          "timestamp": 1744306309823,
+          "step": 17
+        },
+        {
+          "value": 0.644839,
+          "timestamp": 1744307547432,
+          "step": 18
+        },
+        {
+          "value": 0.644582,
+          "timestamp": 1744308808206,
+          "step": 19
+        },
+        {
+          "value": 0.644804,
+          "timestamp": 1744310100641,
+          "step": 20
+        },
+        {
+          "value": 0.645193,
+          "timestamp": 1744311400676,
+          "step": 21
+        },
+        {
+          "value": 0.645476,
+          "timestamp": 1744312696183,
+          "step": 22
+        },
+        {
+          "value": 0.645876,
+          "timestamp": 1744313972177,
+          "step": 23
+        },
+        {
+          "value": 0.645986,
+          "timestamp": 1744315258168,
+          "step": 24
+        }
+      ],
+      "Recall_Sample_TEST": [
+        {
+          "value": 0.760439,
+          "timestamp": 1744315517920,
+          "step": 0
+        }
+      ],
+      "Precision_Macro_TRAIN": [
+        {
+          "value": 0.436335,
+          "timestamp": 1744285368941,
+          "step": 0
+        },
+        {
+          "value": 0.449462,
+          "timestamp": 1744286597999,
+          "step": 1
+        },
+        {
+          "value": 0.452881,
+          "timestamp": 1744287825078,
+          "step": 2
+        },
+        {
+          "value": 0.455853,
+          "timestamp": 1744289052210,
+          "step": 3
+        },
+        {
+          "value": 0.458509,
+          "timestamp": 1744290285263,
+          "step": 4
+        },
+        {
+          "value": 0.460343,
+          "timestamp": 1744291524100,
+          "step": 5
+        },
+        {
+          "value": 0.461397,
+          "timestamp": 1744292763698,
+          "step": 6
+        },
+        {
+          "value": 0.46254,
+          "timestamp": 1744294000809,
+          "step": 7
+        },
+        {
+          "value": 0.463548,
+          "timestamp": 1744295231542,
+          "step": 8
+        },
+        {
+          "value": 0.464082,
+          "timestamp": 1744296461625,
+          "step": 9
+        },
+        {
+          "value": 0.46473,
+          "timestamp": 1744297697311,
+          "step": 10
+        },
+        {
+          "value": 0.465844,
+          "timestamp": 1744298937078,
+          "step": 11
+        },
+        {
+          "value": 0.465741,
+          "timestamp": 1744300161851,
+          "step": 12
+        },
+        {
+          "value": 0.466712,
+          "timestamp": 1744301387557,
+          "step": 13
+        },
+        {
+          "value": 0.46646,
+          "timestamp": 1744302614026,
+          "step": 14
+        },
+        {
+          "value": 0.467462,
+          "timestamp": 1744303848778,
+          "step": 15
+        },
+        {
+          "value": 0.468044,
+          "timestamp": 1744305076278,
+          "step": 16
+        },
+        {
+          "value": 0.468008,
+          "timestamp": 1744306309841,
+          "step": 17
+        },
+        {
+          "value": 0.468662,
+          "timestamp": 1744307547450,
+          "step": 18
+        },
+        {
+          "value": 0.468531,
+          "timestamp": 1744308808225,
+          "step": 19
+        },
+        {
+          "value": 0.468728,
+          "timestamp": 1744310100658,
+          "step": 20
+        },
+        {
+          "value": 0.469183,
+          "timestamp": 1744311400694,
+          "step": 21
+        },
+        {
+          "value": 0.469289,
+          "timestamp": 1744312696206,
+          "step": 22
+        },
+        {
+          "value": 0.469783,
+          "timestamp": 1744313972199,
+          "step": 23
+        },
+        {
+          "value": 0.470045,
+          "timestamp": 1744315258187,
+          "step": 24
+        }
+      ],
+      "Precision_Weighted_TEST": [
+        {
+          "value": 0.670887,
+          "timestamp": 1744315517933,
+          "step": 0
+        }
+      ],
+      "Hamming_loss_TEST": [
+        {
+          "value": 0.207197,
+          "timestamp": 1744315517900,
+          "step": 0
+        }
+      ],
+      "Recall_Macro_TRAIN": [
+        {
+          "value": 0.784282,
+          "timestamp": 1744285368932,
+          "step": 0
+        },
+        {
+          "value": 0.799201,
+          "timestamp": 1744286597989,
+          "step": 1
+        },
+        {
+          "value": 0.802614,
+          "timestamp": 1744287825069,
+          "step": 2
+        },
+        {
+          "value": 0.805548,
+          "timestamp": 1744289052199,
+          "step": 3
+        },
+        {
+          "value": 0.808271,
+          "timestamp": 1744290285250,
+          "step": 4
+        },
+        {
+          "value": 0.810312,
+          "timestamp": 1744291524091,
+          "step": 5
+        },
+        {
+          "value": 0.810417,
+          "timestamp": 1744292763689,
+          "step": 6
+        },
+        {
+          "value": 0.812207,
+          "timestamp": 1744294000797,
+          "step": 7
+        },
+        {
+          "value": 0.813784,
+          "timestamp": 1744295231533,
+          "step": 8
+        },
+        {
+          "value": 0.814402,
+          "timestamp": 1744296461615,
+          "step": 9
+        },
+        {
+          "value": 0.814207,
+          "timestamp": 1744297697303,
+          "step": 10
+        },
+        {
+          "value": 0.814691,
+          "timestamp": 1744298937069,
+          "step": 11
+        },
+        {
+          "value": 0.815463,
+          "timestamp": 1744300161836,
+          "step": 12
+        },
+        {
+          "value": 0.816792,
+          "timestamp": 1744301387548,
+          "step": 13
+        },
+        {
+          "value": 0.816008,
+          "timestamp": 1744302614017,
+          "step": 14
+        },
+        {
+          "value": 0.817317,
+          "timestamp": 1744303848769,
+          "step": 15
+        },
+        {
+          "value": 0.817916,
+          "timestamp": 1744305076267,
+          "step": 16
+        },
+        {
+          "value": 0.817081,
+          "timestamp": 1744306309832,
+          "step": 17
+        },
+        {
+          "value": 0.817281,
+          "timestamp": 1744307547441,
+          "step": 18
+        },
+        {
+          "value": 0.817672,
+          "timestamp": 1744308808216,
+          "step": 19
+        },
+        {
+          "value": 0.818061,
+          "timestamp": 1744310100649,
+          "step": 20
+        },
+        {
+          "value": 0.81794,
+          "timestamp": 1744311400684,
+          "step": 21
+        },
+        {
+          "value": 0.818004,
+          "timestamp": 1744312696195,
+          "step": 22
+        },
+        {
+          "value": 0.818494,
+          "timestamp": 1744313972186,
+          "step": 23
+        },
+        {
+          "value": 0.817896,
+          "timestamp": 1744315258178,
+          "step": 24
+        }
+      ],
+      "Precision_Micro_VAL": [
+        {
+          "value": 0.497953,
+          "timestamp": 1744285498430,
+          "step": 0
+        },
+        {
+          "value": 0.507563,
+          "timestamp": 1744286724144,
+          "step": 1
+        },
+        {
+          "value": 0.511151,
+          "timestamp": 1744287954561,
+          "step": 2
+        },
+        {
+          "value": 0.510048,
+          "timestamp": 1744289178622,
+          "step": 3
+        },
+        {
+          "value": 0.516059,
+          "timestamp": 1744290412898,
+          "step": 4
+        },
+        {
+          "value": 0.518452,
+          "timestamp": 1744291652606,
+          "step": 5
+        },
+        {
+          "value": 0.517545,
+          "timestamp": 1744292891061,
+          "step": 6
+        },
+        {
+          "value": 0.519078,
+          "timestamp": 1744294127990,
+          "step": 7
+        },
+        {
+          "value": 0.518926,
+          "timestamp": 1744295358472,
+          "step": 8
+        },
+        {
+          "value": 0.519937,
+          "timestamp": 1744296588448,
+          "step": 9
+        },
+        {
+          "value": 0.521586,
+          "timestamp": 1744297824726,
+          "step": 10
+        },
+        {
+          "value": 0.522887,
+          "timestamp": 1744299063658,
+          "step": 11
+        },
+        {
+          "value": 0.527875,
+          "timestamp": 1744300288193,
+          "step": 12
+        },
+        {
+          "value": 0.519756,
+          "timestamp": 1744301514034,
+          "step": 13
+        },
+        {
+          "value": 0.521227,
+          "timestamp": 1744302741311,
+          "step": 14
+        },
+        {
+          "value": 0.528378,
+          "timestamp": 1744303976138,
+          "step": 15
+        },
+        {
+          "value": 0.523842,
+          "timestamp": 1744305205986,
+          "step": 16
+        },
+        {
+          "value": 0.52546,
+          "timestamp": 1744306438398,
+          "step": 17
+        },
+        {
+          "value": 0.530141,
+          "timestamp": 1744307676324,
+          "step": 18
+        },
+        {
+          "value": 0.52695,
+          "timestamp": 1744308942035,
+          "step": 19
+        },
+        {
+          "value": 0.529572,
+          "timestamp": 1744310235024,
+          "step": 20
+        },
+        {
+          "value": 0.529009,
+          "timestamp": 1744311536624,
+          "step": 21
+        },
+        {
+          "value": 0.527126,
+          "timestamp": 1744312830747,
+          "step": 22
+        },
+        {
+          "value": 0.527675,
+          "timestamp": 1744314109180,
+          "step": 23
+        },
+        {
+          "value": 0.522614,
+          "timestamp": 1744315387347,
+          "step": 24
+        }
+      ],
+      "F1_Score_Micro_VAL": [
+        {
+          "value": 0.606605,
+          "timestamp": 1744285498412,
+          "step": 0
+        },
+        {
+          "value": 0.616902,
+          "timestamp": 1744286724123,
+          "step": 1
+        },
+        {
+          "value": 0.622586,
+          "timestamp": 1744287954533,
+          "step": 2
+        },
+        {
+          "value": 0.621278,
+          "timestamp": 1744289178600,
+          "step": 3
+        },
+        {
+          "value": 0.627485,
+          "timestamp": 1744290412874,
+          "step": 4
+        },
+        {
+          "value": 0.628606,
+          "timestamp": 1744291652582,
+          "step": 5
+        },
+        {
+          "value": 0.626723,
+          "timestamp": 1744292891036,
+          "step": 6
+        },
+        {
+          "value": 0.62851,
+          "timestamp": 1744294127970,
+          "step": 7
+        },
+        {
+          "value": 0.627804,
+          "timestamp": 1744295358450,
+          "step": 8
+        },
+        {
+          "value": 0.628129,
+          "timestamp": 1744296588424,
+          "step": 9
+        },
+        {
+          "value": 0.629815,
+          "timestamp": 1744297824706,
+          "step": 10
+        },
+        {
+          "value": 0.629919,
+          "timestamp": 1744299063637,
+          "step": 11
+        },
+        {
+          "value": 0.635879,
+          "timestamp": 1744300288172,
+          "step": 12
+        },
+        {
+          "value": 0.630414,
+          "timestamp": 1744301514015,
+          "step": 13
+        },
+        {
+          "value": 0.632385,
+          "timestamp": 1744302741290,
+          "step": 14
+        },
+        {
+          "value": 0.635186,
+          "timestamp": 1744303976119,
+          "step": 15
+        },
+        {
+          "value": 0.634283,
+          "timestamp": 1744305205959,
+          "step": 16
+        },
+        {
+          "value": 0.632965,
+          "timestamp": 1744306438377,
+          "step": 17
+        },
+        {
+          "value": 0.637189,
+          "timestamp": 1744307676299,
+          "step": 18
+        },
+        {
+          "value": 0.635803,
+          "timestamp": 1744308942015,
+          "step": 19
+        },
+        {
+          "value": 0.635934,
+          "timestamp": 1744310235006,
+          "step": 20
+        },
+        {
+          "value": 0.637216,
+          "timestamp": 1744311536604,
+          "step": 21
+        },
+        {
+          "value": 0.634818,
+          "timestamp": 1744312830728,
+          "step": 22
+        },
+        {
+          "value": 0.636922,
+          "timestamp": 1744314109158,
+          "step": 23
+        },
+        {
+          "value": 0.630964,
+          "timestamp": 1744315387322,
+          "step": 24
+        }
+      ],
+      "Loss_TRAIN": [
+        {
+          "value": 0.673123,
+          "timestamp": 1744285368879,
+          "step": 0
+        },
+        {
+          "value": 0.640653,
+          "timestamp": 1744286597959,
+          "step": 1
+        },
+        {
+          "value": 0.631614,
+          "timestamp": 1744287825031,
+          "step": 2
+        },
+        {
+          "value": 0.624365,
+          "timestamp": 1744289052160,
+          "step": 3
+        },
+        {
+          "value": 0.618938,
+          "timestamp": 1744290285203,
+          "step": 4
+        },
+        {
+          "value": 0.614878,
+          "timestamp": 1744291524055,
+          "step": 5
+        },
+        {
+          "value": 0.61291,
+          "timestamp": 1744292763658,
+          "step": 6
+        },
+        {
+          "value": 0.609816,
+          "timestamp": 1744294000757,
+          "step": 7
+        },
+        {
+          "value": 0.607097,
+          "timestamp": 1744295231498,
+          "step": 8
+        },
+        {
+          "value": 0.60549,
+          "timestamp": 1744296461583,
+          "step": 9
+        },
+        {
+          "value": 0.604205,
+          "timestamp": 1744297697263,
+          "step": 10
+        },
+        {
+          "value": 0.601791,
+          "timestamp": 1744298937029,
+          "step": 11
+        },
+        {
+          "value": 0.601071,
+          "timestamp": 1744300161805,
+          "step": 12
+        },
+        {
+          "value": 0.600087,
+          "timestamp": 1744301387506,
+          "step": 13
+        },
+        {
+          "value": 0.599912,
+          "timestamp": 1744302613980,
+          "step": 14
+        },
+        {
+          "value": 0.598505,
+          "timestamp": 1744303848735,
+          "step": 15
+        },
+        {
+          "value": 0.597602,
+          "timestamp": 1744305076227,
+          "step": 16
+        },
+        {
+          "value": 0.596616,
+          "timestamp": 1744306309796,
+          "step": 17
+        },
+        {
+          "value": 0.595382,
+          "timestamp": 1744307547408,
+          "step": 18
+        },
+        {
+          "value": 0.595766,
+          "timestamp": 1744308808190,
+          "step": 19
+        },
+        {
+          "value": 0.594905,
+          "timestamp": 1744310100624,
+          "step": 20
+        },
+        {
+          "value": 0.59411,
+          "timestamp": 1744311400646,
+          "step": 21
+        },
+        {
+          "value": 0.593628,
+          "timestamp": 1744312696160,
+          "step": 22
+        },
+        {
+          "value": 0.592969,
+          "timestamp": 1744313972150,
+          "step": 23
+        },
+        {
+          "value": 0.592021,
+          "timestamp": 1744315258145,
+          "step": 24
+        }
+      ],
+      "Hamming_loss_TRAIN": [
+        {
+          "value": 0.225178,
+          "timestamp": 1744285368898,
+          "step": 0
+        },
+        {
+          "value": 0.21398,
+          "timestamp": 1744286597972,
+          "step": 1
+        },
+        {
+          "value": 0.211277,
+          "timestamp": 1744287825044,
+          "step": 2
+        },
+        {
+          "value": 0.208742,
+          "timestamp": 1744289052180,
+          "step": 3
+        },
+        {
+          "value": 0.206767,
+          "timestamp": 1744290285219,
+          "step": 4
+        },
+        {
+          "value": 0.205607,
+          "timestamp": 1744291524073,
+          "step": 5
+        },
+        {
+          "value": 0.204725,
+          "timestamp": 1744292763672,
+          "step": 6
+        },
+        {
+          "value": 0.203705,
+          "timestamp": 1744294000775,
+          "step": 7
+        },
+        {
+          "value": 0.20295,
+          "timestamp": 1744295231517,
+          "step": 8
+        },
+        {
+          "value": 0.20277,
+          "timestamp": 1744296461598,
+          "step": 9
+        },
+        {
+          "value": 0.202172,
+          "timestamp": 1744297697281,
+          "step": 10
+        },
+        {
+          "value": 0.201545,
+          "timestamp": 1744298937048,
+          "step": 11
+        },
+        {
+          "value": 0.201455,
+          "timestamp": 1744300161819,
+          "step": 12
+        },
+        {
+          "value": 0.200667,
+          "timestamp": 1744301387527,
+          "step": 13
+        },
+        {
+          "value": 0.200879,
+          "timestamp": 1744302613999,
+          "step": 14
+        },
+        {
+          "value": 0.200203,
+          "timestamp": 1744303848752,
+          "step": 15
+        },
+        {
+          "value": 0.199861,
+          "timestamp": 1744305076248,
+          "step": 16
+        },
+        {
+          "value": 0.199807,
+          "timestamp": 1744306309815,
+          "step": 17
+        },
+        {
+          "value": 0.199286,
+          "timestamp": 1744307547420,
+          "step": 18
+        },
+        {
+          "value": 0.199386,
+          "timestamp": 1744308808199,
+          "step": 19
+        },
+        {
+          "value": 0.199325,
+          "timestamp": 1744310100633,
+          "step": 20
+        },
+        {
+          "value": 0.198954,
+          "timestamp": 1744311400658,
+          "step": 21
+        },
+        {
+          "value": 0.198815,
+          "timestamp": 1744312696173,
+          "step": 22
+        },
+        {
+          "value": 0.198616,
+          "timestamp": 1744313972169,
+          "step": 23
+        },
+        {
+          "value": 0.19849,
+          "timestamp": 1744315258160,
+          "step": 24
+        }
+      ],
+      "F1_Score_Sample_TEST": [
+        {
+          "value": 0.609152,
+          "timestamp": 1744315517911,
+          "step": 0
+        }
+      ]
+    },
+    "tags": {
+      "Training info": "Using Pos_Weights for BCEWithLogitsLoss",
+      "mlflow.log-model.history": "[{\"run_id\": \"d08e10e3a36d405281c2f8d0caab3969\", \"artifact_path\": \"model\", \"utc_time_created\": \"2025-04-10 20:05:18.083824\", \"model_uuid\": \"f334a465a00c4709a99e6cd7397d400b\", \"flavors\": {\"pytorch\": {\"model_data\": \"data\", \"pytorch_version\": \"2.5.1\", \"code\": null}, \"python_function\": {\"pickle_module_name\": \"mlflow.pytorch.pickle_module\", \"loader_module\": \"mlflow.pytorch\", \"python_version\": \"3.12.6\", \"data\": \"data\", \"env\": {\"conda\": \"conda.yaml\", \"virtualenv\": \"python_env.yaml\"}}}}]",
+      "mlflow.loggedArtifacts": "[{\"path\": \"f1_score_per_label.json\", \"type\": \"table\"}, {\"path\": \"recall_per_label.json\", \"type\": \"table\"}, {\"path\": \"precision_per_label.json\", \"type\": \"table\"}, {\"path\": \"label_wise_accuracy.json\", \"type\": \"table\"}]",
+      "mlflow.runName": "EfficientNetB0",
+      "mlflow.source.git.commit": "d0b285c3f284dbc33e1e4103151c5cfacb56ec26",
+      "mlflow.source.name": "train.py",
+      "mlflow.source.type": "LOCAL",
+      "mlflow.user": "peterbrezovcsik"
+    },
+    "inputs": []
+  }
+}

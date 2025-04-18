@@ -6,6 +6,8 @@ import os
 from PIL import Image
 from pathlib import Path
 
+
+
 class CelebA(Dataset):
     def __init__(
             self,
@@ -20,7 +22,7 @@ class CelebA(Dataset):
         files, attr = self._read_csv('list_attr_celeba.csv')
         
         self.attr = torch.div(attr + 1, 2, rounding_mode='floor').float()
-        self.files = [os.path.join(self.root, 'img_align_celeba/', file) for file in files]
+        self.files = [os.path.join(self.root, 'transformed_images', file) for file in files]
         
 
     def get_pos_weights(self) -> torch.Tensor:
@@ -28,7 +30,7 @@ class CelebA(Dataset):
         num_of_pos_labels = torch.sum(self.attr, dim = 0)
         num_of_neg_labels = num_of_labels - num_of_pos_labels
         pos_weights = num_of_neg_labels / num_of_pos_labels
-        return pos_weights
+        return num_of_labels, pos_weights
 
 
     def _read_csv(

@@ -1,0 +1,44 @@
+{
+  "system": {
+    "package_version": "1.2.0",
+    "script": "export_experiment.py",
+    "export_file_version": "2",
+    "export_time": 1744638846,
+    "_export_time": "2025-04-14 13:54:06",
+    "mlflow_version": "2.20.1",
+    "mlflow_tracking_uri": "http://localhost:8080",
+    "platform": {
+      "python_version": "3.12.6",
+      "system": "Darwin",
+      "processor": "arm"
+    },
+    "user": "peterbrezovcsik"
+  },
+  "info": {
+    "num_total_runs": 4,
+    "num_ok_runs": 4,
+    "num_failed_runs": 0,
+    "failed_runs": []
+  },
+  "mlflow": {
+    "experiment": {
+      "experiment_id": "208844861682074549",
+      "name": "Face_Attribute_Recognition_Basic",
+      "artifact_location": "mlflow-artifacts:/208844861682074549",
+      "lifecycle_stage": "active",
+      "tags": {
+        "mlflow.sharedViewState.638c82e607108a6ed5a50f5b46facf16d28f0672a38e4cf43aadf0908a5433ab": "deflate;eJztW11v4jgU/SujPFerhAQKfWO6nZlq6ewKut2RRiPGSW4SE8cO/gBC1f++DimFBpj2YSUsrR/jr3t9zskBrvGjIwDxKPuEiQTuXDnOhcN4DPxj9QdU+hlJyXGoJIjfhERcTiUuYDdoKCLnKkFEwIWz6b+vu6+c4WikBxGcQFRFBF6WH0YSL+r5MZJIgBTbnu8/LpyCxUAegAvM6G4GIR/Gigo9RwCBSEJ8zYgqdMvV9/30fk6Y4hH81AP3W+/qRUW79fcm/E9Hh+V69ZtViWgMsXP1+NS0/IUprZ+/P4/4guMY6O75AQscYoJldYfK3bRmWB1U5/7pdjy5n3rudPz314nOIGJFiTjo7VxnGqt6B4+OUliHcbzLIOi4vaDf9d2+C+twWWSuniOrsl7q43DsNBGumaLynl03azlXnquRA721aKLR0dDdHiyXF34Zz1mNoQYDZL2vZ9Kw+AwUONq0Sa5gu1hD/ydvOokYh+kdijib3t9M7p2ni+NJq0EMK/CDXdKj2683JmQ9Ht5+3ciRwqRgTGYUhAZfp7AarrCYRIjAfZNyPQbxWmzHGjmiKTRkb2Y24YSEck+e3+qeu710dF+1G90kum3TwuM6GQ2AaLSFU6oz/1NJgvWb8LJjJeAzYSEi39B2pXbP6GV7mKbP3ae4ysP1OkakMI6rh+HIMrWPrDefdfKu6hhkBfhNK0jX4PbibmqSvLC1gqNc9cJoPYijnnFcWStoIdsPLgcAyjfHCiaoKAn82guS9SDphXFokL62aVszaIMbp6xQMsfmkWXdoAVtly+6qroszHGDfwCnmR70az+Q1WzuRcXaIIntEreOcOAI/QW+LGKTfim80GU9oQXunOeYYJWc3RO+oKLQ6U4JE+LXdhCEHZTmg+T8+nqds3WCg6LUSnYX87RrGFPWBNq4LkUwK+D8FYPRmy//4hLcchXMzi+pkX3pjzJU+j0fJR43hCH7srf56dBczOLF2V/2vzhEuN7+e44KcLKUWYj886vqIG1rAW1wVzNULXMTirltsqwbtKANu7kgWYZMcoO3Tws6a59WeZgbJTB7XHDiJyaeca+I++aRZd2gBW2RsFUQ985fDdgx9Z4DAwXBIhgUBlQEDvO2ftBGl819uWRcGsiWNYR2rY2TsEA9k74evO/MALuLXLpcmCQye2hwWmhR2Q/WXWVAXecIX9YW2l/pUjbjocfObgtj0DiT9xQQIt+PVNY1oIDwOmdrBQffD6RHaZAZUEB8xZQ1gfaxvOgh8GbCGBN4u26giHATRg34lHmdszWBNrKXacjnXoUMY8qaQAtXUinm9Rg3xQTeUy7oZMj3xWxgjLZsreBkebpYSUzchWlUWR9oFwrUGhaEnv9U8Zmn91UJBr0qE905M0ZetkRwWmI+XYZld+GaR5Z1g/Z/DAa5ly5zOLsbTFQoQE6HUaQ4iqo3/mfcY25/1c/OL7CDtK0btMFN036cZKQ0j6z/rxv82L+w/Iz06SvLe4hTtLkDvrl5/aHJeUMEFiVB1RZ0LMawuUW+x82bXJ38lzqs2Cyj+S76pNLYFv91eI3JAsPyTiNZ4PXeUK3TERZye0t8G0PLSAfRwB0Gq8HnTJUQPyCiQNy+XApvJmc4hpuilNXr5rSe81FvgypCnh9b19eRkmwMiRZHdkNRSPaCpi90b1a9ZjTBmvDHI5o8IvnTMn16+heUl6Ht"
+      },
+      "creation_time": 1744065322000,
+      "last_update_time": 1744065322000,
+      "_creation_time": "2025-04-07 22:35:22",
+      "_last_update_time": "2025-04-07 22:35:22"
+    },
+    "runs": [
+      "deb2ec4727614895878fc0f4efc8e502",
+      "d08e10e3a36d405281c2f8d0caab3969",
+      "1c79f142e4ae4c04a2483254235d526e",
+      "2bc5d5d1798549d992ac2d81016a9011"
+    ]
+  }
+}

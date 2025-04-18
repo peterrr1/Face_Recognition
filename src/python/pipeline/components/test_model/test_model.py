@@ -20,7 +20,8 @@ def parse_args():
     parser.add_argument('--model_path', type=str, required=True, help="Path to the model weights.")
     parser.add_argument('--test_data', type=str, required=True, help="Path to the test data.")
     parser.add_argument('--batch_size', type=int, required=True, help="Batch size for testing the model.")
-    parser.add_argument('--output_model', type=str, required=True, help="Path to save the test results.")
+    parser.add_argument('--output_model_weights', type=str, required=True, help="Path to save the test results.")
+    parser.add_argument('--output_model', type=str, required=True, help="Path to save the model.")
 
     args = parser.parse_args()
     return args
@@ -38,7 +39,7 @@ def test(model, loader, criterion, logger, device):
             pred = model(input)
             loss = criterion(pred, target)
 
-            metrics = evaluate_performance(target.detach(), pred.detach(), threshold=0.5)
+            metrics = evaluate_performance(target.to('cpu'), pred.to('cpu'), threshold=0.5)
             loss_sum += loss.item()
             metrics_sum = add_dicts(metrics_sum, metrics)
 
@@ -66,7 +67,8 @@ def main(args):
     model_weights_path = args.model_path
     test_data_path = args.test_data
     batch_size = args.batch_size
-    output_model_path = args.output_model
+    output_model_weights = args.output_model_weights
+    model_output = args.output_model
 
 
     model_dict = torch.load(os.path.join(model_weights_path, 'shufflenet.pth'))
@@ -85,11 +87,16 @@ def main(args):
     model = get_model(model_name)
     model.load_state_dict(model_dict)
 
+    device = torch.device("cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu")
+    model.to(device)
+
     print("Model loaded successfully!")
 
 
     ## Load the test data
     test_ds = CelebA(test_data_path, transform=ShuffleNet_V2_X0_5_FaceTransforms())
+
+    pos_weights_test = test_ds.get_pos_weights()[1].to(device)
 
 
     ## For testing purposes only, create daatsets from a subset of the data
@@ -100,8 +107,7 @@ def main(args):
     print(f"Test loader contains: {len(test_loader)} batches")
 
     ## Define params
-    criterion = torch.nn.BCEWithLogitsLoss()
-    device = "cuda" if torch.cuda.is_available() else "cpu"
+    criterion = torch.nn.BCEWithLogitsLoss(pos_weight=pos_weights_test)
 
     ## Create the logger
     logger = MetricsLogger(celeba_columns)
@@ -118,22 +124,27 @@ def main(args):
     output_schema = Schema([TensorSpec(np.dtype(np.float32), (1, 40))])
     signature = ModelSignature(inputs=input_schema, outputs=output_schema)
 
+
     ## Log the model
     print('Log the model...')
     mlflow.pytorch.log_model(model, "model", signature=signature)
-    
+
 
     ## Save the model
+    print("Save the model...")
+    mlflow.pytorch.save_model(model, model_output, signature=signature)
+
+
+    ## Save the model weights
     model_state_dict = model.state_dict()
 
     ## Add the model name to the state dictionary
     model_state_dict['model_name'] = model_name
 
     ## Save the model to the output path
-    print(f'Saving model to output path: {output_model_path}')
-    torch.save(model_state_dict, os.path.join(output_model_path, f'{model_name}.pth'))
+    print(f'Saving model weights to output path: {output_model_weights}')
+    torch.save(model_state_dict, os.path.join(output_model_weights, f'{model_name}.pth'))
     print('Model saved successfully!')
-
 
 
 

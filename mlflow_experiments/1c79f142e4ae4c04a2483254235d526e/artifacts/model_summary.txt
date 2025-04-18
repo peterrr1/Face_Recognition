@@ -1,0 +1,44 @@
+======================================================================
+Layer (type:depth-idx)                        Param #
+======================================================================
+ShuffleNetV2_X0_5                             --
+├─ShuffleNetV2: 1-1                           --
+│    └─Sequential: 2-1                        --
+│    │    └─Conv2d: 3-1                       (648)
+│    │    └─BatchNorm2d: 3-2                  (48)
+│    │    └─ReLU: 3-3                         --
+│    └─MaxPool2d: 2-2                         --
+│    └─Sequential: 2-3                        --
+│    │    └─InvertedResidual: 3-4             (2,400)
+│    │    └─InvertedResidual: 3-5             (1,512)
+│    │    └─InvertedResidual: 3-6             (1,512)
+│    │    └─InvertedResidual: 3-7             (1,512)
+│    └─Sequential: 2-4                        --
+│    │    └─InvertedResidual: 3-8             (8,256)
+│    │    └─InvertedResidual: 3-9             (5,328)
+│    │    └─InvertedResidual: 3-10            (5,328)
+│    │    └─InvertedResidual: 3-11            (5,328)
+│    │    └─InvertedResidual: 3-12            (5,328)
+│    │    └─InvertedResidual: 3-13            (5,328)
+│    │    └─InvertedResidual: 3-14            (5,328)
+│    │    └─InvertedResidual: 3-15            (5,328)
+│    └─Sequential: 2-5                        --
+│    │    └─InvertedResidual: 3-16            (30,336)
+│    │    └─InvertedResidual: 3-17            (19,872)
+│    │    └─InvertedResidual: 3-18            (19,872)
+│    │    └─InvertedResidual: 3-19            (19,872)
+│    └─Sequential: 2-6                        --
+│    │    └─Conv2d: 3-20                      (196,608)
+│    │    └─BatchNorm2d: 3-21                 (2,048)
+│    │    └─ReLU: 3-22                        --
+│    └─Sequential: 2-7                        --
+│    │    └─Linear: 3-23                      524,800
+│    │    └─BatchNorm1d: 3-24                 1,024
+│    │    └─ReLU: 3-25                        --
+│    │    └─Dropout: 3-26                     --
+│    │    └─Linear: 3-27                      20,520
+======================================================================
+Total params: 888,136
+Trainable params: 546,344
+Non-trainable params: 341,792
+======================================================================

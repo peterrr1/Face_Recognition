@@ -40,7 +40,7 @@ def validate(model, loader, criterion, logger, device, epoch):
             pred = model(input)
             loss = criterion(pred, target)
 
-            metrics = evaluate_performance(target.detach(), pred.detach(), threshold=0.5)
+            metrics = evaluate_performance(target.to('cpu'), pred.to('cpu'), threshold=0.5)
             loss_sum += loss.item()
             metrics_sum = add_dicts(metrics_sum, metrics)
 
@@ -66,8 +66,10 @@ def validate(model, loader, criterion, logger, device, epoch):
 
 
 
-def train(model, loader, criterion, optimizer, epochs, logger, device):
+def train(model, loader, criterions, optimizer, epochs, logger, device):
     model.train()
+
+    criterion = criterions['train']
 
     for epoch in range(epochs):
         loss_sum = 0.0
@@ -88,7 +90,7 @@ def train(model, loader, criterion, optimizer, epochs, logger, device):
             optimizer.step()
             
             
-            metrics = evaluate_performance(target.detach(), pred.detach(), threshold=0.5)
+            metrics = evaluate_performance(target.to('cpu'), pred.to('cpu'), threshold=0.5)
             
             loss_sum += loss.item()
             metrics_sum = add_dicts(metrics_sum, metrics)
@@ -113,7 +115,7 @@ def train(model, loader, criterion, optimizer, epochs, logger, device):
         print(f'TRAINING - Epoch [{epoch + 1}/{epochs}] - Loss: {avg_loss}')
 
         ## Validate the model after each epoch
-        validate(model, loader['val'], criterion, logger, device, epoch)
+        validate(model, loader['val'], criterions['val'], logger, device, epoch)
 
 
 
@@ -155,7 +157,12 @@ def main(args):
     model = get_model(model_name)
     model.load_state_dict(model_dict)
 
+    device = torch.device("cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu")
+
+    model = model.to(device)
+
     model = freeze_model(model)
+
 
     print("Model loaded successfully!")
 
@@ -165,7 +172,10 @@ def main(args):
     train_ds = CelebA(train_data_path, transform=ShuffleNet_V2_X0_5_FaceTransforms())
     val_ds = CelebA(val_data_path, transform=ShuffleNet_V2_X0_5_FaceTransforms())
 
-    ## For testing purposes only, create daatsets from a subset of the data
+    pos_weights_train = train_ds.get_pos_weights()[1].to(device)
+    pos_weights_val = val_ds.get_pos_weights()[1].to(device)
+
+    ## For testing purposes only, create daatsets from a subset of the data, seed is fixed for reproducibility
     train_ds, val_ds, _ = torch.utils.data.random_split(train_ds, [0.002, 0.001, 0.997], torch.Generator().manual_seed(0))
 
     print(f"Train data length demo: {len(train_ds)}")
@@ -182,16 +192,23 @@ def main(args):
     print("Length of the data loaders: ", len(train_loader), len(val_loader))
 
 
+    ## Define params
+    train_criterion = torch.nn.BCEWithLogitsLoss(pos_weight=pos_weights_train)
+    val_criterion = torch.nn.BCEWithLogitsLoss(pos_weight=pos_weights_val)
+
     ## Create a dictionary of the data loaders
     loaders = {
         'train': train_loader,
         'val': val_loader
     }
 
-    ## Define params
-    criterion = torch.nn.BCEWithLogitsLoss()
+    criterions = {
+        'train': train_criterion,
+        'val': val_criterion
+    }
+
+
     optimizer = torch.optim.Adam(params=model.parameters(), lr=learning_rate)
-    device = "cuda" if torch.cuda.is_available() else "cpu"
 
     print("Is cuda available: ", torch.cuda.is_available())
 
@@ -200,7 +217,7 @@ def main(args):
         'learning_rate': learning_rate,
         'batch_size': batch_size,
         'optimizer': optimizer.__class__.__name__,
-        'loss': criterion.__class__.__name__
+        'loss': train_criterion.__class__.__name__
     }
 
 
@@ -208,7 +225,7 @@ def main(args):
     
     mlflow.log_params(params)
 
-    if criterion.pos_weight is None:
+    if train_criterion.pos_weight is None:
         mlflow.set_tag('Training info', 'No Pos_Weights for BCEWithLogitsLoss')
     else:
         mlflow.set_tag('Training info', 'Using Pos_Weights for BCEWithLogitsLoss')
@@ -224,7 +241,7 @@ def main(args):
 
     print("Training the model...")
 
-    train(model, loaders, criterion, optimizer, epochs, logger, device)
+    train(model, loaders, criterions, optimizer, epochs, logger, device)
 
     model_state_dict = model.state_dict()
 
@@ -243,6 +260,5 @@ if __name__ == '__main__':
 
     args = parse_args()
     main(args)
-
 
     print('Training step completed successfully!')  

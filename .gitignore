@@ -5,3 +5,7 @@ notebooks/
 .DS_Store
 azureml_config.txt
 src/python/pipeline/static/
+src/python/local/deprecated/
+src/python/local/static/dataset
+src/python/local/static/dataset.zip
+data_test/
