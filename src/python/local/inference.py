@@ -2,22 +2,23 @@ import mlflow
 import torchvision.transforms.v2 as v2
 import torch
 from itertools import compress
-from utils.constant_utils import celeba_columns
+from utils.constant_utils import CELEBA_COLUMNS
 from PIL import Image
 from ultralytics import YOLO
 import matplotlib.pyplot as plt
-from utils.transform_utils import ShuffleNet_V2_X0_5_FaceTransforms
+from utils.transform_utils import DataTransforms
 import time
 import cv2
 
 
 
-
+DEVICE = torch.device("cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu")
 
 def make_predictions(model, img, transforms):
 
     ## Apply the transformations
     img = transforms(img)
+    img = img.to(DEVICE)
 
     ## Check the shape of the transformed image
     if img.shape != torch.Size([1, 3, 224, 224]):
@@ -26,10 +27,12 @@ def make_predictions(model, img, transforms):
     res = None
 
     with torch.no_grad():
+        print('1')
         res = model(img)
+        print('2')
         res = torch.nn.Sigmoid()(res)
         res = res > 0.5
-        res = list(compress(celeba_columns, res[0].tolist()))
+        res = list(compress(CELEBA_COLUMNS, res[0].tolist()))
     
     return res
     
@@ -129,7 +132,7 @@ def detect_video(img, model, detector, transforms):
         if conf < 0.7:
             continue
 
-        start = time.time()
+        start_frame = time.time()
 
         res = make_predictions(
             model,
@@ -142,9 +145,8 @@ def detect_video(img, model, detector, transforms):
             res.append('Female')
 
 
-        inference_time = (time.time() - start) * 1000
+        inference_time = (time.time() - start_frame) * 1000
         print(f"Inference time for image {idx + 1}: {inference_time} ms")
-        print(res)
         cv2.putText(img, str(conf), (x, y - 5), cv2.FONT_HERSHEY_COMPLEX_SMALL, 0.5, (255, 255, 255), 1)
         cv2.rectangle(img, (x, y), (x + w, y + h), (255, 255, 255), 2)
 
@@ -158,25 +160,25 @@ def detect_video(img, model, detector, transforms):
 def process_video(video_path):
 
     mlflow.set_tracking_uri('http://localhost:8080')
+    #device = torch.device("cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu")
 
-    model = mlflow.pytorch.load_model('mlflow-artifacts:/365604127024099804/feef9253f36b45148a2513966cf7f0ab/artifacts/model/')
+    model = mlflow.pytorch.load_model('mlflow-artifacts:/208844861682074549/f4ca907c3d7e4d68894311ac4e46d4ff/artifacts/model')
+    model.to(DEVICE)
+    
     detector = YOLO('./static/yolov11n-face.pt')
-
+    print("Model loaded successfully!")
+    
+    print("Model loaded successfully to MPS!")
     ## Detect faces
     #img = Image.open('./static/face_image.jpeg')
-    transforms = ShuffleNet_V2_X0_5_FaceTransforms(inference=True, pad=25)
+    transforms = DataTransforms(inference=True)
 
     cap = cv2.VideoCapture(video_path)
 
     if (cap.isOpened() == False):
         print('Error opening the video file!')
 
-    frames = []
-
     recognition_times = []
-
-    
-
 
     with torch.inference_mode():
         while (cap.isOpened()):

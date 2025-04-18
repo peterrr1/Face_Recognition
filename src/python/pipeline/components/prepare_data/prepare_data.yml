@@ -8,8 +8,6 @@ type: command
 inputs:
   input_data:
     type: uri_folder
-  model_type:
-    type: string
 
 outputs:
   train_data:
@@ -23,12 +21,11 @@ outputs:
 code: .
 environment: 
   conda_file: ./conda.yml
-  image: mcr.microsoft.com/azureml/openmpi4.1.0-ubuntu22.04:latest
+  image: mcr.microsoft.com/azureml/openmpi4.1.0-cuda11.8-cudnn8-ubuntu22.04:latest
   
 command: >-
   python prepare_data.py
   --input_data ${{inputs.input_data}}
-  --model_type ${{inputs.model_type}}
   --train_data ${{outputs.train_data}}
   --val_data ${{outputs.val_data}}
   --test_data ${{outputs.test_data}}

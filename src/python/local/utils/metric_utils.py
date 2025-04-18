@@ -13,6 +13,7 @@ import mlflow
 def create_zero_metrics():
     zero_metrics = {
         'averaged_example_based_accuracy': 0.0,
+        'label_wise_accuracy': np.zeros(40, dtype=float),  # Assuming the array has 40 elements
         'f1_score': {
             'macro_averaged': 0.0,
             'micro_averaged': 0.0,
@@ -110,7 +111,12 @@ def evaluate_performance(
     # Create a binary representation of the predictions
     y_pred = (torch.nn.Sigmoid()(y_pred) > threshold).float()
 
-    accuracy = MultilabelAccuracy(num_labels=y_pred.shape[1], threshold=threshold)
+
+    ## Subset accuracy
+    accuracy = MultilabelAccuracy(num_labels=y_pred.shape[1], threshold=threshold, average='weighted')
+
+    ## Label-wise accuracy
+    label_wise_accuracy = MultilabelAccuracy(num_labels=y_pred.shape[1], threshold=threshold, average=None)
 
 
     evaluation_metrics = {
@@ -119,7 +125,9 @@ def evaluate_performance(
         'f1_score': calculate_f1_scores(y_true.numpy(), y_pred.numpy()),
         'hamming_loss': hamming_loss(y_true.numpy(), y_pred.numpy()),
         'averaged_example_based_accuracy': accuracy(y_pred, y_true).item(),
+        'label_wise_accuracy': label_wise_accuracy(y_pred, y_true).numpy(),
     }
+
 
     return evaluation_metrics
 
@@ -130,6 +138,7 @@ class MetricsLogger():
         self.df_f1 = pd.DataFrame(columns=columns)
         self.df_rec = pd.DataFrame(columns=columns)
         self.df_prec = pd.DataFrame(columns=columns)
+        self.df_lw_acc = pd.DataFrame(columns=columns)
         
     
     def log_metrics(self, stage, metrics, step):
@@ -153,11 +162,11 @@ class MetricsLogger():
         mlflow.log_metric(f'Precision_Sample_{stage}', f"{metrics['precision_score']['sample_average']:4f}", step=step)
         mlflow.log_metric(f'Precision_Weighted_{stage}', f"{metrics['precision_score']['weighted_averaged']:4f}", step=step)
 
-
         if stage == 'TEST':
             self.df_f1.loc[step] = metrics['f1_score']['per_label']
             self.df_rec.loc[step] = metrics['recall_score']['per_label']
             self.df_prec.loc[step] = metrics['precision_score']['per_label']
+            self.df_lw_acc.loc[step] = metrics['label_wise_accuracy']
         
         
     
@@ -165,3 +174,4 @@ class MetricsLogger():
         mlflow.log_table(self.df_f1, 'f1_score_per_label.json')
         mlflow.log_table(self.df_rec, 'recall_per_label.json')
         mlflow.log_table(self.df_prec, 'precision_per_label.json')
+        mlflow.log_table(self.df_lw_acc, 'label_wise_accuracy.json')

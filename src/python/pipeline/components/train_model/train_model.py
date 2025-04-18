@@ -3,12 +3,12 @@ import mlflow
 from torch.utils.data import DataLoader
 import torch
 import os
-from torchvision.models import shufflenet_v2_x0_5
+from utils.datasets.CelebA import CelebA
+from utils.transforms import ShuffleNet_V2_X0_5_FaceTransforms
 from utils.models import get_model
-from utils.common import divide_dict, add_dicts
+from utils.common import divide_dict, add_dicts, freeze_model
 from utils.metrics import create_zero_metrics, MetricsLogger, evaluate_performance
 from utils.constants import celeba_columns
-
 
 
 def parse_args():
@@ -40,7 +40,7 @@ def validate(model, loader, criterion, logger, device, epoch):
             pred = model(input)
             loss = criterion(pred, target)
 
-            metrics = evaluate_performance(target.detach(), pred.detach(), threshold=0.5)
+            metrics = evaluate_performance(target.to('cpu'), pred.to('cpu'), threshold=0.5)
             loss_sum += loss.item()
             metrics_sum = add_dicts(metrics_sum, metrics)
 
@@ -66,14 +66,18 @@ def validate(model, loader, criterion, logger, device, epoch):
 
 
 
-def train(model, loader, criterion, optimizer, epochs, logger, device):
+def train(model, loader, criterions, optimizer, epochs, logger, device):
     model.train()
+
+    criterion = criterions['train']
 
     for epoch in range(epochs):
         loss_sum = 0.0
         metrics_sum = create_zero_metrics()
         
         for batch, (input, target) in enumerate(loader['train']):
+            print(f"Epoch [{epoch + 1}/{epochs}] - Batch [{batch + 1}/{len(loader['train'])}]")
+
             input = input.to(device)
             target = target.to(device)
 
@@ -86,7 +90,7 @@ def train(model, loader, criterion, optimizer, epochs, logger, device):
             optimizer.step()
             
             
-            metrics = evaluate_performance(target.detach(), pred.detach(), threshold=0.5)
+            metrics = evaluate_performance(target.to('cpu'), pred.to('cpu'), threshold=0.5)
             
             loss_sum += loss.item()
             metrics_sum = add_dicts(metrics_sum, metrics)
@@ -111,7 +115,7 @@ def train(model, loader, criterion, optimizer, epochs, logger, device):
         print(f'TRAINING - Epoch [{epoch + 1}/{epochs}] - Loss: {avg_loss}')
 
         ## Validate the model after each epoch
-        validate(model, loader['val'], criterion, logger, device, epoch)
+        validate(model, loader['val'], criterions['val'], logger, device, epoch)
 
 
 
@@ -131,57 +135,113 @@ def main(args):
     ## Test prints
     print(f"Model weights path contains: {os.listdir(model_weights_path)}")
     print(f"Train data path contains: {os.listdir(train_data_path)}")
+    print(f"Train data number of images: {len(os.listdir(os.path.join(train_data_path, 'transformed_images')))}")
+    print(f"Train data number of images: {len(os.listdir(os.path.join(val_data_path, 'transformed_images')))}")
     
-    print(f"Epochs: {epochs}")
-    print(f"Batch size: {batch_size}")
-    print(f"Learning rate: {learning_rate}")
 
-
-    model_dict = torch.load(os.path.join(model_weights_path, 'shufflenet.pth'))
+    ## Load the model weights
+    model_dict = torch.load(os.path.join(model_weights_path, 'shufflenet.pth'), weights_only=True)
     model_name = model_dict['model_name']
     print(f"Model name: {model_name}")
 
 
+    ## Remove the model name from the dictionary
     try:
         model_dict.pop('model_name')
     except KeyError:
         print("Model name not found in the model dictionary!")
 
 
+    ## Load the model
     print("Loading the model...")
     model = get_model(model_name)
     model.load_state_dict(model_dict)
 
+    device = torch.device("cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu")
+
+    model = model.to(device)
+
+    model = freeze_model(model)
+
+
     print("Model loaded successfully!")
 
 
-    print("Load the training and validation data...")
-    train_set = torch.load(os.path.join(train_data_path, 'train_data.pth'))
-    val_set = torch.load(os.path.join(val_data_path, 'val_data.pth'))
-    print("Length of the train and validation sets: ", len(train_set), len(val_set))
+    ## Load the data
+    print("Loading the data...")
+    train_ds = CelebA(train_data_path, transform=ShuffleNet_V2_X0_5_FaceTransforms())
+    val_ds = CelebA(val_data_path, transform=ShuffleNet_V2_X0_5_FaceTransforms())
 
+    pos_weights_train = train_ds.get_pos_weights()[1].to(device)
+    pos_weights_val = val_ds.get_pos_weights()[1].to(device)
+
+    ## For testing purposes only, create daatsets from a subset of the data, seed is fixed for reproducibility
+    train_ds, val_ds, _ = torch.utils.data.random_split(train_ds, [0.002, 0.001, 0.997], torch.Generator().manual_seed(0))
+
+    print(f"Train data length demo: {len(train_ds)}")
+    print(f"Val data length demo: {len(val_ds)}")
+    
+
+
+    ## Create the data loaders
     print("Define the data loaders...")
-    train_loader = DataLoader(train_set, batch_size=batch_size, shuffle=True)
-    val_loader = DataLoader(val_set, batch_size=batch_size)
+    train_loader = DataLoader(train_ds, batch_size=batch_size, shuffle=True)
+    val_loader = DataLoader(val_ds, batch_size=batch_size)
+
+
     print("Length of the data loaders: ", len(train_loader), len(val_loader))
 
 
+    ## Define params
+    train_criterion = torch.nn.BCEWithLogitsLoss(pos_weight=pos_weights_train)
+    val_criterion = torch.nn.BCEWithLogitsLoss(pos_weight=pos_weights_val)
+
+    ## Create a dictionary of the data loaders
     loaders = {
         'train': train_loader,
         'val': val_loader
     }
 
-    ## Define params
-    criterion = torch.nn.BCEWithLogitsLoss()
+    criterions = {
+        'train': train_criterion,
+        'val': val_criterion
+    }
+
+
     optimizer = torch.optim.Adam(params=model.parameters(), lr=learning_rate)
-    device = "cuda" if torch.cuda.is_available() else "cpu"
+
+    print("Is cuda available: ", torch.cuda.is_available())
+
+    params = {
+        'epochs': epochs,
+        'learning_rate': learning_rate,
+        'batch_size': batch_size,
+        'optimizer': optimizer.__class__.__name__,
+        'loss': train_criterion.__class__.__name__
+    }
+
+
+    ## Log the parameters and set the tag
     
+    mlflow.log_params(params)
+
+    if train_criterion.pos_weight is None:
+        mlflow.set_tag('Training info', 'No Pos_Weights for BCEWithLogitsLoss')
+    else:
+        mlflow.set_tag('Training info', 'Using Pos_Weights for BCEWithLogitsLoss')
+    
+
+
+    print("Device: ", device)
+    
+
+    ## Create the logger
     logger = MetricsLogger(celeba_columns)
 
-    print("Training the model...")
-    ## TODO
 
-    train(model, loaders, criterion, optimizer, epochs, logger, device)
+    print("Training the model...")
+
+    train(model, loaders, criterions, optimizer, epochs, logger, device)
 
     model_state_dict = model.state_dict()
 
@@ -192,12 +252,13 @@ def main(args):
     ## Save the model to the output path
     print(f'Saving model to output path: {output_model_path}')
     torch.save(model_state_dict, os.path.join(output_model_path, f'{model_name}.pth'))
+
+
     print('Model saved successfully!')
 
+if __name__ == '__main__':    
 
+    args = parse_args()
+    main(args)
 
-if __name__ == '__main__':
-    with mlflow.start_run():
-        args = parse_args()
-        main(args)
-    print('Training step completed successfully!')
+    print('Training step completed successfully!')  

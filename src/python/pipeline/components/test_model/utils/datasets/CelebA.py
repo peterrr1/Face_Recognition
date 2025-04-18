@@ -22,7 +22,7 @@ class CelebA(Dataset):
         files, attr = self._read_csv('list_attr_celeba.csv')
         
         self.attr = torch.div(attr + 1, 2, rounding_mode='floor').float()
-        self.files = [os.path.join(self.root, 'img_align_celeba/', file) for file in files]
+        self.files = [os.path.join(self.root, 'transformed_images', file) for file in files]
         
 
     def get_pos_weights(self) -> torch.Tensor:

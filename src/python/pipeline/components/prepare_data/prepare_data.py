@@ -3,18 +3,16 @@ import os
 from ultralytics import YOLO
 import pandas as pd
 from PIL import Image
-from utils.datasets.CelebA import CelebA
-from torch.utils.data import DataLoader, random_split
-import torch
-
+import csv
+from utils.transforms import FaceTransforms
 
 def parse_args():
+    print("Parsing arguments...")
     parser = argparse.ArgumentParser('Prepare dataset')
     parser.add_argument('--input_data', type=str, required=True, help="Path to the folder containing the input data.")
-    parser.add_argument('--model_type', type=str, required=True, help="Type of the model to train.", choices=['shufflenet', 'mobilenet', 'efficientnet'])
-    parser.add_argument('--train_data', type=str, required=True, help="Path to the folder to save the training data.")
-    parser.add_argument('--val_data', type=str, required=True, help="Path to the folder to save the validation data.")
-    parser.add_argument('--test_data', type=str, required=True, help="Path to the folder to save the test data.")
+    parser.add_argument('--train_data', type=str, required=True, help="Path to the training data.")
+    parser.add_argument('--val_data', type=str, required=True, help="Path to the validation data.")
+    parser.add_argument('--test_data', type=str, required=True, help="Path to the test data.")
 
     args = parser.parse_args()
     return args
@@ -25,135 +23,101 @@ def main(args):
     print("Preparing dataset...")
 
     ## Get the input and output data paths
-    input = args.input_data
-    model_type = args.model_type
-    train_data = args.train_data
-    val_data = args.val_data
-    test_data = args.test_data
-    
+    input_path = args.input_data
+    train_path = args.train_data
+    val_path = args.val_data
+    test_path = args.test_data
+
+    outputs = [train_path, val_path, test_path]
 
     ## Print the input and output data paths
-    print(f"Input data path: {input}")
-    print(f"List of files in the input data dir: {os.listdir(input)}")
+    print(f"Input data path: {input_path}")
 
-    print(f"Output data path: {train_data}, {val_data}, {test_data}")
-    print(f"List of files in the output data dir: {os.listdir(train_data)}, {os.listdir(val_data)}, {os.listdir(test_data)}")
-    
+    for output in outputs:
+        print(f"Output data path: {output}")
+
     ## Check the input data
-    print(f"Number of files in the input data: {len(os.listdir(input))}")
-    print(os.listdir(input))
+    print(f"Number of files in the input data: {len(os.listdir(input_path))}")
+    print(os.listdir(input_path))
 
+    ## Check the output data
+    for output in outputs:
+        print("Number of files in the output data:", len(os.listdir(output)))
+        print(os.listdir(output))
 
 
     ## Load the face detector and the transforms
     detector = YOLO('./static/yolov11n-face.pt')
-
-
-    transform = None
-
-    if model_type == 'shufflenet':
-        from utils.transforms import ShuffleNet_V2_X0_5_FaceTransforms
-        print("Loading ShuffleNet transforms...")
-        transform = ShuffleNet_V2_X0_5_FaceTransforms(detector=detector, pad=15)
-
-    elif model_type == 'mobilenet':
-        from utils.transforms import MobileNet_V2_FaceTransforms
-        print("Loading MobileNet transforms...")
-        transform = MobileNet_V2_FaceTransforms(detector=detector, pad=15)        
-
-    elif model_type == 'efficientnet':
-        from utils.transforms import EfficientNet_B0_FaceTransforms
-        print("Loading EfficientNet transforms...")
-        transform = EfficientNet_B0_FaceTransforms(detector=detector, pad=15)
-
-
-    dataset = CelebA(input, transform=transform)
-
-     ## Seed is fixed to ensure reproducibility
-    print('Splitting the dataset and creating the data loaders...')
-
-    train_set, val_set, test_set = random_split(dataset, [0.7, 0.299, 0.001], torch.Generator().manual_seed(0))
-    
-    ## For testing purposes create a smaller dataset
-    train_set_demo, val_set_demo, test_set_demo = random_split(test_set, [0.7, 0.2, 0.1], torch.Generator().manual_seed(0))
-
-    print(len(train_set_demo), len(val_set_demo), len(test_set_demo))
-    
-
-    print("Length of the data loaders: ", len(train_set_demo), len(val_set_demo), len(test_set_demo))
-
-    ## Save the data loaders
-    torch.save(train_set_demo, os.path.join(train_data, 'train_data.pth'))
-    torch.save(val_set_demo, os.path.join(val_data, 'val_data.pth'))
-    torch.save(test_set_demo, os.path.join(test_data, 'test_data.pth'))
-
-
-    ## Check the output data
-    print("Files in the output_file dir:", os.listdir(train_data), os.listdir(val_data), os.listdir(test_data))
-
-
-    """
+    transform = FaceTransforms(detector=detector, pad=20)
 
     ## If output directory does not exist, create it
-    print("Checking if directories exists...")
+    for output in outputs:
+        print(f"Checking if directories exists in {output}...")
+        if not os.path.isdir(os.path.join(output, 'transformed_images')):
+            print("Required directories do not exist.")
+            print("Creating directories...")
 
-    if not os.path.isdir(os.path.join(output, 'celeba')):
-        print("Required directories do not exist.")
-        print("Creating directories...")
+            os.mkdir(os.path.join(output, 'transformed_images'))
 
-        os.mkdir(os.path.join(output, 'celeba'))
-        os.mkdir(os.path.join(output, 'celeba', 'transformed_images'))
+            print("Directories created.")
+        else:
+            print("Directories already exist")
 
-        print("Directories created.")
-    else:
-        print("Directories already exist")
+
     ## Load the dataframe
-    print("Loading dataframe...")
-    df = pd.read_csv(os.path.join(input, 'list_attr_celeba.csv'), index_col=0, header=0)
+    print("Loading dataframes...")
+    attr_df = pd.read_csv(os.path.join(input_path, 'list_attr_celeba.csv'), index_col=0, header=0)
+    split_df = pd.read_csv(os.path.join(input_path, 'list_eval_partition.csv'), index_col=0, header=0)
 
-    print("Dataframe successfully loaded.")
+    print("Dataframes successfully loaded.")
 
-    
-    ## Get the names of the files
-    files = df.index.values[:10]
-    print("Number of files to transform:", len(files))
+    ## Create the csv files
+    fieldnames = ['image_id'] + [name for name in attr_df.columns]
+
+    train_csv = csv.writer(open(os.path.join(train_path, 'list_attr_celeba.csv'), 'w'))
+    val_csv = csv.writer(open(os.path.join(val_path, 'list_attr_celeba.csv'), 'w'))
+    test_csv = csv.writer(open(os.path.join(test_path, 'list_attr_celeba.csv'), 'w'))
+
+    ## Write the column names
+    train_csv.writerow(fieldnames)
+    val_csv.writerow(fieldnames)
+    test_csv.writerow(fieldnames)
 
     ## Get the path to the image data
-    image_data = os.path.join(input, 'img_align_celeba')
+    image_data = os.path.join(input_path, 'img_align_celeba')    
 
+    ## Transform the images and write the data to the csv files
+    for row in attr_df.iterrows():
+        file = row[0]
 
-    ## Transform the images
-    print("Transforming images...")
+        partition = split_df.loc[file, 'partition']
+        row = [file, *row[1]]
 
-    for idx in range(len(files)):
-        image_path = os.path.join(image_data, files[idx])
+        image_path = os.path.join(image_data, file)
+        
+        if partition == 0:
+            train_csv.writerow(row)
+        elif partition == 1:
+            val_csv.writerow(row)
+        else:
+            test_csv.writerow(row)
 
         img = Image.open(image_path)
         img_transformed = transform(img)
+        img_transformed.save(os.path.join(outputs[partition], 'transformed_images', file))
 
-        output_path = os.path.join(output, 'celeba', 'transformed_images', files[idx])
         
-        img_transformed.save(output_path)
-
     print("Images successfully transformed.")
 
-    ## Save the dataframe
-    print("Saving dataframe...")
-    df.to_csv(os.path.join(output, 'celeba', 'list_attr_celeba.csv'))
-
-    print("Dataframe successfully saved.")
-
     ## Check the output data
-    print("Number of files in the output data:", len(os.listdir(output)))
-    print(os.listdir(output))
-    print(os.listdir(os.path.join(output, 'celeba')))
-    print(os.listdir(os.path.join(output, 'celeba', 'transformed_images')))"
-    """
-    
+    for output in outputs:
+        print("Number of files in the output data:", len(os.listdir(output)))
+        print(os.listdir(output))
+        print("Number of images:" ,len(os.listdir(os.path.join(output, 'transformed_images'))))
+
 
 if __name__ == '__main__':
-    
     args = parse_args()
     main(args)
 
-    print("Data preparation step completed successfully!")
+    print("Done")

@@ -14,12 +14,14 @@ inputs:
     type: integer
 
 outputs:
-  output_model:
+  output_model_weights:
     type: uri_folder
+  output_model:
+    type: mlflow_model
 
 code: .
 environment:
-  image: mcr.microsoft.com/azureml/openmpi3.1.2-cuda10.1-cudnn7-ubuntu18.04
+  image: mcr.microsoft.com/azureml/openmpi4.1.0-cuda11.8-cudnn8-ubuntu22.04:latest
   conda_file: ./conda.yml
 
 command: >-
@@ -27,5 +29,6 @@ command: >-
   --model_path ${{inputs.model_path}}
   --test_data ${{inputs.test_data}}
   --batch_size ${{inputs.batch_size}}
+  --output_model_weights ${{outputs.output_model_weights}}
   --output_model ${{outputs.output_model}}
   

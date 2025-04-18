@@ -8,6 +8,6 @@ dependencies:
   - pip=25.0.1
   - python=3.12.6
   - pip:
-      - torch==2.2.2
-      - torchvision==0.17.2
+      - torch==2.5.1
+      - torchvision==0.20.1
 

@@ -6,6 +6,8 @@ import argparse
 
 """
 Create a data asset.
+Usage:
+python create_data_asset.py --subscription_id <subscription_id> --resource_group <resource_group> --workspace_name <workspace_name> --input_data <input_data> --name <name> --version <version> --description <description>
 """
 
 
@@ -50,3 +52,4 @@ try:
 except:
     data_asset = ml_client.data.create_or_update(my_data)
     print(f"Data asset created. Name: {my_data.name}, version: {my_data.version}")
+

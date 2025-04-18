@@ -2,7 +2,6 @@ from torch import nn, argmax, float32
 import torchvision.transforms.v2 as v2
 
 
-
 class DetectFace(nn.Module):
     """
     Detects a face in an image using a face detector and crops the image around the face.
@@ -26,7 +25,7 @@ class DetectFace(nn.Module):
         # If no faces are detected, return the original image
         if preds[0].boxes.conf.numel() == 0:
             return x
-        
+
         # Select the one with the highest confidence if exists
         idx = argmax(preds[0].boxes.conf)
 
@@ -38,92 +37,19 @@ class DetectFace(nn.Module):
 
 
 
-class ShuffleNet_V2_X0_5_FaceTransforms(nn.Module):
-    """
-    A series of transformations to apply to an image before feeding it to a ShuffleNetV2_X0_5 model.
-    """
-    def __init__(self, detector = None, pad: int = 0, inference: bool = False):
+class FaceTransforms(nn.Module):
+    def __init__(
+            self,
+            detector = None,
+            pad: int = 0,
+            size: tuple = (224, 224),
+            interpolation_mode = v2.InterpolationMode.BILINEAR
+    ):
         super().__init__()
-
-        self.detector = detector
-
-        if not inference:
-            self.transforms = v2.Compose([
-                v2.RandomHorizontalFlip(p=0.5),
-                v2.RandomRotation(degrees=15),
-                DetectFace(self.detector, pad),
-                v2.Resize((224, 224), interpolation=v2.InterpolationMode.BILINEAR),
-                v2.ToImage(),
-                v2.ToDtype(dtype=float32, scale=True),
-                v2.Normalize(mean=[0.485, 0.456, 0.406],  std=[0.229, 0.224, 0.225])
-            ])
-        else:
-            self.transforms = v2.Compose([
-                v2.Resize((224, 224), interpolation=v2.InterpolationMode.BILINEAR),
-                v2.ToImage(),
-                v2.ToDtype(dtype=float32, scale=True),
-                v2.Normalize(mean=[0.485, 0.456, 0.406],  std=[0.229, 0.224, 0.225])
-            ])
-    
-    def forward(self, x):
-        x = self.transforms(x)
-        return x
-
-
-
-
-class MobileNet_V2_FaceTransforms(nn.Module):
-    """
-    A series of transformations to apply to an image before feeding it to a ShuffleNetV2_X0_5 model.
-    """
-    def __init__(self, detector = None, pad: int = 0, inference: bool = False):
-        super().__init__()
-
-        self.detector = detector
-
-        if not inference:
-            self.transforms = v2.Compose([
-                v2.RandomHorizontalFlip(p=0.5),
-                v2.RandomRotation(degrees=15),
-                DetectFace(self.detector, pad),
-                v2.Resize((224, 224), interpolation=v2.InterpolationMode.BILINEAR),
-                v2.ToImage(),
-                v2.ToDtype(dtype=float32, scale=True),
-                v2.Normalize(mean=[0.485, 0.456, 0.406],  std=[0.229, 0.224, 0.225])
-            ])
-        else:
-            self.transforms = v2.Compose([
-                v2.Resize((224, 224), interpolation=v2.InterpolationMode.BILINEAR),
-                v2.ToImage(),
-                v2.ToDtype(dtype=float32, scale=True),
-                v2.Normalize(mean=[0.485, 0.456, 0.406],  std=[0.229, 0.224, 0.225])
-            ])
-    
-
-    def forward(self, x):
-        x = self.transforms(x)
-        return x
-
-
-
-
-class EfficientNet_B0_FaceTransforms(nn.Module):
-    """
-    A series of transformations to apply to an image before feeding it to a EfficientNet_B0 model.
-    """
-    def __init__(self, detector = None, pad: int = 0):
-        super().__init__()
-
-        self.detector = detector
 
         self.transforms = v2.Compose([
-            v2.RandomHorizontalFlip(p=0.5),
-            v2.RandomRotation(degrees=15),
             DetectFace(detector, pad),
-            v2.Resize((224, 224), interpolation=v2.InterpolationMode.BICUBIC),
-            v2.ToImage(),
-            v2.ToDtype(dtype=float32, scale=True),
-            v2.Normalize(mean=[0.485, 0.456, 0.406],  std=[0.229, 0.224, 0.225])
+            v2.Resize(size, interpolation=interpolation_mode),
         ])
     
     def forward(self, x):

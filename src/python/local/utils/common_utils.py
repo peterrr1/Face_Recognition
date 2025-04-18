@@ -38,30 +38,3 @@ def divide_dict(d, divisor):
 
 
 
-def change_classifier(model, classifier):
-    ## Change the classifier
-    if model.__class__.__name__ == 'ShuffleNetV2':
-        classifier[-1].in_features = model.fc.in_features
-        model.fc = classifier
-    else:
-        classifier[-1].in_features = model.classifier[-1].in_features
-        model.classifier = classifier
-        
-    return model
-
-
-
-def freeze_model(model):
-    ## Freeze all the parameters
-    for param in model.parameters():
-        param.requires_grad = False
-
-    ## Unfreeze the last layer
-    if model.__class__.__name__ == 'ShuffleNetV2':
-        for param in model.fc.parameters():
-            param.requires_grad = True
-    else:
-        for param in model.classifier.parameters():
-            param.requires_grad = True
-
-    return model
